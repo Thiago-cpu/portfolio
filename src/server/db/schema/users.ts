@@ -1,5 +1,5 @@
 import { sql, relations } from "drizzle-orm";
-import { timestamp, varchar } from "drizzle-orm/mysql-core";
+import { mysqlEnum, timestamp, varchar } from "drizzle-orm/mysql-core";
 import { mysqlTable } from "./mysqlTable";
 import { accounts } from "./accounts";
 
@@ -12,6 +12,7 @@ export const users = mysqlTable("user", {
     fsp: 3,
   }).default(sql`CURRENT_TIMESTAMP(3)`),
   image: varchar("image", { length: 255 }),
+  role: mysqlEnum("role", ["admin", "guest"]).notNull().default("guest"),
 });
 
 export const usersRelations = relations(users, ({ many }) => ({
