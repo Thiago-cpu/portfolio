@@ -8,7 +8,6 @@ const I18nMiddleware = createI18nMiddleware({
 });
 
 export function middleware(request: NextRequest) {
-  console.log("hi");
   return I18nMiddleware(request);
 }
 
