@@ -5,6 +5,16 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function randomBetween(from: number, to: number) {
-  return Math.floor(Math.random() * (to - from)) + from;
+interface RandomBetweenConfig {
+  withoutFloor?: boolean;
+}
+
+export function randomBetween(
+  from: number,
+  to: number,
+  config: RandomBetweenConfig = {},
+) {
+  const { withoutFloor = false } = config;
+  const rdm = Math.random() * (to - from);
+  return withoutFloor ? rdm + from : Math.floor(rdm) + from;
 }
