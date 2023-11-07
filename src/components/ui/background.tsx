@@ -60,8 +60,10 @@ const useStyles = (props: useStyleProps) => {
   const [styles, setStyles] = useState<React.CSSProperties>({});
 
   useEffect(() => {
-    const radius =
-      props.radius ?? randomBetween(200, Math.floor(window.outerWidth / 2));
+    const maxRadius = Math.floor(
+      Math.min(window.outerHeight, window.outerWidth) / 2,
+    );
+    const radius = props.radius ?? randomBetween(200, maxRadius);
     const time = props.time ?? randomBetween(40, 60);
     const direction = props.direction ?? Math.random() > 0.5 ? "left" : "right";
     const fromRotate = randomBetween(1, 360);
