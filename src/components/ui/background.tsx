@@ -68,7 +68,7 @@ const useStyles = (props: useStyleProps) => {
     const toRotate = fromRotate + 360 * (direction === "left" ? -1 : 1);
 
     setStyles({
-      ["--radius" as string]: `${radius}px`,
+      ["--orbit-radius" as string]: `${radius}px`,
       ["--time" as string]: `${time}s`,
       ["--from-rotate" as string]: `${fromRotate}deg`,
       ["--to-rotate" as string]: `${toRotate}deg`,

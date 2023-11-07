@@ -69,17 +69,19 @@ module.exports = {
         },
         "square-rotate": {
           from: {
-            transform: "rotate(0deg) translateX(var(--radius))",
+            transform:
+              "rotate(var(--from-rotate, 0deg)) translateX(var(--orbit-radius, 240px))",
           },
           to: {
-            transform: "rotate(360deg) translateX(var(--radius))",
+            transform:
+              "rotate(var(--to-rotate, 360deg)) translateX(var(--orbit-radius, 240px))",
           },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "square-rotate": "square-rotate var(--time) linear infinite",
+        "square-rotate": "square-rotate var(--time, 4s) linear infinite",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
