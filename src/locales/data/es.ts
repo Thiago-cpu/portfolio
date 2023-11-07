@@ -1,5 +1,6 @@
 export default {
   home: {
-    title: "Crear T3 App",
+    name: "Thiago Valdiviezo",
+    description: "Front end & back end developer.",
   },
 } as const;
