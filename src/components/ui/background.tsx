@@ -41,10 +41,8 @@ const squareVariants = cva(
 
 export interface SquareProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof squareVariants> {
-  radius?: number;
-  time?: number;
-}
+    VariantProps<typeof squareVariants>,
+    useStyleProps {}
 
 const randomSize = () => {
   const sizes = ["sm", "md", "lg"] as const;
@@ -52,10 +50,39 @@ const randomSize = () => {
   return rdmSize;
 };
 
+interface useStyleProps {
+  radius?: number;
+  time?: number;
+  direction?: "left" | "right";
+}
+
+const useStyles = (props: useStyleProps) => {
+  const [styles, setStyles] = useState<React.CSSProperties>({});
+
+  useEffect(() => {
+    const radius =
+      props.radius ?? randomBetween(200, Math.floor(window.outerWidth / 2));
+    const time = props.time ?? randomBetween(40, 60);
+    const direction = props.direction ?? Math.random() > 0.5 ? "left" : "right";
+    const fromRotate = randomBetween(1, 360);
+    const toRotate = fromRotate + 360 * (direction === "left" ? -1 : 1);
+
+    setStyles({
+      ["--radius" as string]: `${radius}px`,
+      ["--time" as string]: `${time}s`,
+      ["--from-rotate" as string]: `${fromRotate}deg`,
+      ["--to-rotate" as string]: `${toRotate}deg`,
+    });
+  }, [props.direction, props.radius, props.time]);
+
+  return styles;
+};
+
 function Square(props: SquareProps) {
   const { className, size: propSize, style, ...rest } = props;
   const squareRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState(propSize);
+  const customStyles = useStyles(props);
 
   useEffect(() => {
     if (!squareRef.current || !window) return;
@@ -65,14 +92,6 @@ function Square(props: SquareProps) {
 
     setSize(propSize ?? randomSize());
   }, [propSize]);
-
-  const radius = props.radius ?? randomBetween(100, 250);
-  const time = props.time ?? randomBetween(10, 15);
-
-  const customStyles: React.CSSProperties = {
-    ["--radius" as string]: `${radius}px`,
-    ["--time" as string]: `${time}s`,
-  };
 
   const mergedStyles = {
     ...customStyles,
