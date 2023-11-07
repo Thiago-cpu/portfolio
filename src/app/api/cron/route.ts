@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     await db.query.users.findFirst();
-    return NextResponse.json({ error: "database is awake" }, { status: 200 });
+    return NextResponse.json({ msg: "database is awake" }, { status: 200 });
   } catch (error) {
     console.error("Error waking database:", error);
     return NextResponse.json(

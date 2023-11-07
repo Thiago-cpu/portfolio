@@ -7,7 +7,7 @@ type BackgroundProps = SquareListProps;
 
 function Background({ squares }: BackgroundProps) {
   return (
-    <div className="fixed left-0 top-0 -z-10">
+    <div className="fixed inset-0 -z-10">
       <SquareList squares={squares} />
     </div>
   );
@@ -24,13 +24,13 @@ function SquareList({ squares }: BackgroundProps) {
 }
 
 const squareVariants = cva(
-  "bg-transparent border-slate-100 border absolute animate-square-rotate",
+  "bg-transparent border-slate-100 border absolute animate-square transition-shadow",
   {
     variants: {
       size: {
-        sm: "h-4 w-4",
-        md: "h-16 w-16",
-        lg: "h-32 w-32",
+        sm: "h-4 w-4 hover:shadow-[0_0_43px_-4px_rgba(30,144,255,0.4)]",
+        md: "h-16 w-16 hover:shadow-[0_0_53px_-12px_rgba(30,144,255,0.4)]",
+        lg: "h-32 w-32 hover:shadow-[0_0_63px_-18px_rgba(30,144,255,0.4)]",
       },
     },
     defaultVariants: {

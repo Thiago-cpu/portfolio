@@ -77,11 +77,22 @@ module.exports = {
               "rotate(var(--to-rotate, 360deg)) translateX(var(--orbit-radius, 240px))",
           },
         },
+        "square-shadow": {
+          "0%": {
+            boxShadow: "0 0 10px 5px rgba(112, 128, 144, 0.7)",
+          },
+          "50%": {
+            boxShadow: "0 0 20px 10px rgba(30, 144, 255, 0.7)",
+          },
+          "100%": {
+            boxShadow: "0 0 10px 5px rgba(112, 128, 144, 0.7)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "square-rotate": "square-rotate var(--time, 4s) linear infinite",
+        square: "square-rotate var(--time, 4s) linear infinite",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
