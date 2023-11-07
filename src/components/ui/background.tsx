@@ -1,13 +1,11 @@
-"use client";
 import { cn, randomBetween } from "@/lib/utils";
 import { type VariantProps, cva } from "class-variance-authority";
-import { useEffect, useState } from "react";
 
 type BackgroundProps = SquareListProps;
 
 function Background({ squares }: BackgroundProps) {
   return (
-    <div className="fixed inset-0 -z-10">
+    <div className="fixed left-0 top-0 -z-10">
       <SquareList squares={squares} />
     </div>
   );
@@ -39,7 +37,7 @@ const squareVariants = cva(
   },
 );
 
-export interface SquareProps
+interface SquareProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof squareVariants>,
     useStyleProps {}
@@ -63,56 +61,37 @@ interface Styles extends React.CSSProperties {
   ["--to-rotate"]?: string;
 }
 
-const useStyles = (props: useStyleProps) => {
-  const [styles, setStyles] = useState<Styles | null>(null);
+const getStyles = (props: useStyleProps) => {
+  const left = `${randomBetween(0, 100, { withoutFloor: true })}vw`;
+  const top = `${randomBetween(0, 100, { withoutFloor: true })}vh`;
 
-  useEffect(() => {
-    setStyles((prev) => ({
-      ...prev,
-      left: `${randomBetween(0, window.outerWidth)}px`,
-      top: `${randomBetween(0, window.outerHeight)}px`,
-    }));
-  }, []);
+  const radius = props.radius ?? `calc(200px + ${Math.random()} * 50vmin)`;
+  const time = props.time ?? randomBetween(40, 60);
+  const direction = props.direction ?? Math.random() > 0.5 ? "left" : "right";
+  const fromRotate = randomBetween(1, 360);
+  const toRotate = fromRotate + 360 * (direction === "left" ? -1 : 1);
 
-  useEffect(() => {
-    if (!window) return;
-    const maxRadius = Math.floor(
-      Math.min(window.outerHeight, window.outerWidth) / 2,
-    );
-    const radius = props.radius ?? randomBetween(200, maxRadius);
-    const time = props.time ?? randomBetween(40, 60);
-    const direction = props.direction ?? Math.random() > 0.5 ? "left" : "right";
-    const fromRotate = randomBetween(1, 360);
-    const toRotate = fromRotate + 360 * (direction === "left" ? -1 : 1);
-
-    setStyles((prev) => ({
-      ...prev,
-      ["--orbit-radius"]: `${radius}px`,
-      ["--time"]: `${time}s`,
-      ["--from-rotate"]: `${fromRotate}deg`,
-      ["--to-rotate"]: `${toRotate}deg`,
-    }));
-  }, [props.direction, props.radius, props.time]);
+  const styles: Styles = {
+    left,
+    top,
+    ["--orbit-radius"]: `${radius}`,
+    ["--time"]: `${time}s`,
+    ["--from-rotate"]: `${fromRotate}deg`,
+    ["--to-rotate"]: `${toRotate}deg`,
+  };
 
   return styles;
 };
 
 function Square(props: SquareProps) {
   const { className, size: propSize, style, ...rest } = props;
-  const [size, setSize] = useState(propSize);
-  const customStyles = useStyles(props);
-
-  useEffect(() => {
-    if (!window) return;
-    setSize(propSize ?? randomSize());
-  }, [propSize]);
+  const customStyles = getStyles(props);
+  const size = propSize ?? randomSize();
 
   const mergedStyles = {
     ...customStyles,
     ...style,
   };
-
-  if (!customStyles) return;
 
   return (
     <div
