@@ -31,28 +31,24 @@ export function ContactForm() {
   const translateToast = useScopedI18n("toast");
   const t = useScopedI18n("contact.form");
   const { mutate, isLoading } = api.contact.create.useMutation({
-    onSettled: (success, error, values) => {
+    onSuccess: () => {
+      toast({
+        title: t("toast.title"),
+        description: t("toast.description"),
+      });
+    },
+    onError: (_err, values) => {
       const tryAgain = () => mutate(values);
-      if (success) {
-        toast({
-          title: t("toast.title"),
-          description: t("toast.description"),
-        });
-      } else {
-        toast({
-          variant: "destructive",
-          title: translateToast("error.title"),
-          description: translateToast("error.description"),
-          action: (
-            <ToastAction
-              onClick={tryAgain}
-              altText={translateToast("tryAgain")}
-            >
-              {translateToast("tryAgain")}
-            </ToastAction>
-          ),
-        });
-      }
+      toast({
+        variant: "destructive",
+        title: translateToast("error.title"),
+        description: translateToast("error.description"),
+        action: (
+          <ToastAction onClick={tryAgain} altText={translateToast("tryAgain")}>
+            {translateToast("tryAgain")}
+          </ToastAction>
+        ),
+      });
     },
   });
   const form = useForm<z.infer<typeof formSchema>>({
