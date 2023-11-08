@@ -29,9 +29,6 @@ export default {
       submit: "Submit",
     },
   },
-  // errors: {
-  //   ["error" as string]: "asd",
-  // },
   toast: {
     error: {
       title: "Uh oh! Something went wrong.",
