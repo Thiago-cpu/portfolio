@@ -3,6 +3,7 @@ import * as posts from "./posts";
 import * as sessions from "./sessions";
 import * as users from "./users";
 import * as verificationTokens from "./verificationTokens";
+import * as contacts from "./contacts";
 
 export const schema = {
   ...accounts,
@@ -10,4 +11,5 @@ export const schema = {
   ...sessions,
   ...users,
   ...verificationTokens,
+  ...contacts,
 };
