@@ -1,5 +1,5 @@
 import { createI18nMiddleware } from "next-international/middleware";
-import { type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 const I18nMiddleware = createI18nMiddleware({
   locales: ["en", "es"],
@@ -7,7 +7,17 @@ const I18nMiddleware = createI18nMiddleware({
   urlMappingStrategy: "rewrite",
 });
 
+const rewrites: Record<string, string> = {
+  "/login": "/api/auth/signin",
+  "/logout": "/api/auth/signout",
+};
+
 export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const rewrite = rewrites[pathname];
+  if (rewrite) {
+    return NextResponse.rewrite(new URL(rewrite, request.url));
+  }
   return I18nMiddleware(request);
 }
 
