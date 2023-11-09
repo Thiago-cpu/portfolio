@@ -19,6 +19,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { api } from "@/trpc/react";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 const formSchema = insertContactSchema.pick({
   name: true,
@@ -66,7 +68,10 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col space-y-8"
+      >
         <FormField
           control={form.control}
           name="name"
@@ -116,9 +121,32 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isLoading}>
-          {t("submit")}
-        </Button>
+        <div className="flex items-center justify-between gap-3">
+          <Link
+            href="https://github.com/Thiago-cpu"
+            target="_blank"
+            className="pointer-events-auto"
+          >
+            <GitHubLogoIcon width={34} height={34} />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/thiago-valdiviezo/"
+            target="_blank"
+            className="pointer-events-auto"
+          >
+            <LinkedInLogoIcon width={34} height={34} />
+          </Link>
+          {/* <a
+            href="mailto:thifran789456323@gmail.com"
+            target="_top"
+            className="pointer-events-auto"
+          >
+            <EnvelopeClosedIcon width={34} height={34} />
+          </a> */}
+          <Button type="submit" disabled={isLoading} className="ml-auto">
+            {t("submit")}
+          </Button>
+        </div>
       </form>
     </Form>
   );
