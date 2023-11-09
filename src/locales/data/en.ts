@@ -1,4 +1,8 @@
 export default {
+  links: {
+    home: "Home",
+    contact: "Contact",
+  },
   home: {
     name: "Thiago Valdiviezo",
     description: "Front end & back end developer.",

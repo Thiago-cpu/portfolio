@@ -1,5 +1,7 @@
+import { Background } from "@/components/ui/background";
 import { I18nProviderClient } from "@/locales/client";
 import { type ReactElement } from "react";
+import { Navbar } from "../navbar";
 
 export default function SubLayout({
   params: { lang },
@@ -8,5 +10,11 @@ export default function SubLayout({
   params: { lang: string };
   children: ReactElement;
 }) {
-  return <I18nProviderClient locale={lang}>{children}</I18nProviderClient>;
+  return (
+    <I18nProviderClient locale={lang}>
+      <Navbar />
+      <Background squares={25} />
+      {children}
+    </I18nProviderClient>
+  );
 }
