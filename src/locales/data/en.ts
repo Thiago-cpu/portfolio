@@ -10,7 +10,7 @@ export default {
   contact: {
     title: "contact",
     description:
-      "Feel free to Contact me by submitting the form below or via email",
+      "Feel free to Contact me by submitting the form below or using social media",
     form: {
       fields: {
         name: {

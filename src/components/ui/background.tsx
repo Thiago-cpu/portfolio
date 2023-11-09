@@ -26,8 +26,8 @@ const squareVariants = cva(
   {
     variants: {
       size: {
-        sm: "h-4 w-4 hover:shadow-[0_0_43px_-4px_rgba(30,144,255,1)]",
-        md: "h-16 w-16 hover:shadow-[0_0_53px_-12px_rgba(30,144,255,1)]",
+        sm: "h-4 w-4 hover:shadow-[0_0_23px_-2px_rgba(30,255,144,1)]",
+        md: "h-16 w-16 hover:shadow-[0_0_36px_-12px_rgba(30,255,255,1)]",
         lg: "h-32 w-32 hover:shadow-[0_0_63px_-18px_rgba(30,144,255,1)]",
       },
     },

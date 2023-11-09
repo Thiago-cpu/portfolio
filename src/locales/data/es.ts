@@ -10,7 +10,7 @@ export default {
   contact: {
     title: "Contacto",
     description:
-      "Podes comunicarte conmigo a través del formulario de abajo o por correo electrónico",
+      "Podes comunicarte conmigo a través del formulario o por alguna red social",
     form: {
       fields: {
         name: {
