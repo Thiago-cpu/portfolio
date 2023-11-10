@@ -23,9 +23,12 @@ export function Navlinks() {
     <Link
       key={i}
       href={link.href}
-      className={cn("text-foreground/60 hover:text-foreground/80", {
-        "text-foreground": activeIndex === i,
-      })}
+      className={cn(
+        "pointer-events-auto text-foreground/60 hover:text-foreground/80",
+        {
+          "text-foreground": activeIndex === i,
+        },
+      )}
       onClick={() => setActiveIndex(i)}
     >
       {t(link.label)}
