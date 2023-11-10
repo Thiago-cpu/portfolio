@@ -11,7 +11,7 @@ export async function Contact() {
       className="pointer-events-none flex min-h-screen flex-col justify-center "
     >
       <div className="mb-3 flex flex-col items-center gap-3">
-        <h2 className="bg-opacity-background text-center font-mono text-3xl uppercase backdrop-blur-[1px]">
+        <h2 className="bg-opacity-background text-center text-3xl backdrop-blur-[1px]">
           {t("title")}
         </h2>
         <p className="bg-opacity-background text-center">{t("description")}</p>
