@@ -1,14 +1,8 @@
 import { getI18n } from "@/locales/server";
 import { Contact } from "./(contact)/contact";
 import Experience from "./(experience)/experience";
-import { setStaticParamsLocale } from "next-international/server";
 
-export default async function Home({
-  params: { lang },
-}: {
-  params: { lang: string };
-}) {
-  setStaticParamsLocale(lang);
+export default async function Home() {
   const t = await getI18n();
 
   return (
