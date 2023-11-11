@@ -1,9 +1,7 @@
 "use client";
 
-import { insertContactSchema } from "@/server/db/schema/contacts";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type z from "zod";
 import {
   Form,
   FormControl,
@@ -21,12 +19,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-
-const formSchema = insertContactSchema.pick({
-  name: true,
-  email: true,
-  message: true,
-});
+import { CreateContactSchema } from "@/validations/contactValidation";
+import { type RouterInputs } from "@/trpc/shared";
 
 export function ContactForm() {
   const { toast } = useToast();
@@ -53,8 +47,8 @@ export function ContactForm() {
       });
     },
   });
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<RouterInputs["contact"]["create"]>({
+    resolver: zodResolver(CreateContactSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -62,7 +56,7 @@ export function ContactForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: RouterInputs["contact"]["create"]) {
     mutate(values);
   }
 
