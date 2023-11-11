@@ -19,17 +19,25 @@ import { ToastAction } from "@/components/ui/toast";
 import { type RouterInputs } from "@/trpc/shared";
 import { CreateWorkSchema } from "@/validations/workValidation";
 import { ArrayInput } from "@/components/ui/array-input";
+import { useRouter } from "next/navigation";
 
-export function CreateWorkForm() {
+interface CreateWorkFormProps {
+  onSuccess?: () => void;
+}
+
+export function CreateWorkForm({ onSuccess }: CreateWorkFormProps) {
   const { toast } = useToast();
+  const router = useRouter();
   const translateToast = useScopedI18n("toast");
   const t = useScopedI18n("experience.create");
   const { mutate, isLoading } = api.work.create.useMutation({
     onSuccess: () => {
+      router.refresh();
       toast({
         title: t("toast.title"),
         description: t("toast.description"),
       });
+      onSuccess?.();
     },
     onError: (_err, values) => {
       const tryAgain = () => mutate(values);

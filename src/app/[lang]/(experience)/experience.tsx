@@ -3,9 +3,13 @@ import Works from "./works";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import CreateWork from "./createWork";
+import { getServerIsAdmin } from "@/server/auth";
 
 export default async function Experience() {
-  const t = await getScopedI18n("experience");
+  const [t, isAdmin] = await Promise.all([
+    getScopedI18n("experience"),
+    getServerIsAdmin(),
+  ]);
 
   return (
     <div
@@ -18,9 +22,8 @@ export default async function Experience() {
       <Suspense fallback={<Skeleton className="h-[56px] w-full" />}>
         <Works />
       </Suspense>
-      <Suspense fallback={null}>
-        <CreateWork />
-      </Suspense>
+
+      {isAdmin && <CreateWork />}
     </div>
   );
 }

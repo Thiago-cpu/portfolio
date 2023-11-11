@@ -14,7 +14,6 @@ import { sql, inArray } from "drizzle-orm";
 export const workRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     const locale = getCurrentLocale();
-    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const allWorks = await ctx.db.query.works.findMany({
       columns: {

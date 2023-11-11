@@ -1,3 +1,4 @@
+"use client";
 import {
   Sheet,
   SheetContent,
@@ -6,19 +7,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { getServerIsAdmin } from "@/server/auth";
-import { getScopedI18n } from "@/locales/server";
 import { Button } from "@/components/ui/button";
 import { CreateWorkForm } from "./createWorkForm";
+import { useScopedI18n } from "@/locales/client";
+import { useState } from "react";
 
-export default async function CreateWork() {
-  const [t, isAdmin] = await Promise.all([
-    getScopedI18n("experience.create"),
-    getServerIsAdmin(),
-  ]);
-  if (!isAdmin) return null;
+export default function CreateWork() {
+  const t = useScopedI18n("experience.create");
+  const [open, setOpen] = useState(false);
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button>{t("add-button")}</Button>
       </SheetTrigger>
@@ -31,7 +30,7 @@ export default async function CreateWork() {
           <SheetDescription className="whitespace-pre">
             {t("description")}
           </SheetDescription>
-          <CreateWorkForm />
+          <CreateWorkForm onSuccess={() => setOpen(false)} />
         </SheetHeader>
       </SheetContent>
     </Sheet>
