@@ -8,5 +8,5 @@ export const db = drizzle(
   new Client({
     url: env.DATABASE_URL,
   }).connection(),
-  { schema },
+  { schema, logger: env.NODE_ENV === "development" },
 );
