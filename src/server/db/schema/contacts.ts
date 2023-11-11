@@ -7,7 +7,6 @@ import {
   boolean,
 } from "drizzle-orm/mysql-core";
 import { mysqlTable } from "./mysqlTable";
-import { createInsertSchema } from "drizzle-zod";
 
 export const contacts = mysqlTable(
   "contact",
@@ -26,8 +25,3 @@ export const contacts = mysqlTable(
     nameIndex: index("name_idx").on(contact.name),
   }),
 );
-
-export const insertContactSchema = createInsertSchema(contacts, {
-  email: (schema) => schema.email.email(),
-  name: (schema) => schema.name.min(2),
-});
