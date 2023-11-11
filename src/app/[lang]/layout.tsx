@@ -2,6 +2,11 @@ import { Background } from "@/components/ui/background";
 import { I18nProviderClient } from "@/locales/client";
 import { type ReactElement } from "react";
 import { Navbar } from "../navbar";
+import { getStaticParams } from "@/locales/server";
+
+export function generateStaticParams() {
+  return getStaticParams();
+}
 
 export default function SubLayout({
   params: { lang },
