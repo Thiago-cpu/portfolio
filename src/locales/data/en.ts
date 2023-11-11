@@ -8,7 +8,7 @@ export default {
     description: "Front end & back end developer.",
   },
   contact: {
-    title: "contact",
+    title: "Contact",
     description:
       "Feel free to Contact me by submitting the form below or using social media",
     form: {
@@ -39,5 +39,58 @@ export default {
       description: "There was a problem with your request.",
     },
     tryAgain: "Try again",
+  },
+  experience: {
+    title: "Professional Experience",
+    create: {
+      ["add-button"]: "Add new one",
+      title: "Add new professional experience",
+      description: "You can also see a Preview.\nClick save when you're done.",
+      toast: {
+        title: "Success",
+        description: "Your work has been added successfully.",
+      },
+      fields: {
+        title: {
+          label: "Title",
+          placeholder: "Enter a title",
+        },
+        range: {
+          label: "Range",
+          placeholder: "Enter work period",
+        },
+        location: {
+          label: "Location",
+          placeholder: "Enter location",
+        },
+        page: {
+          label: {
+            label: "Company name",
+            placeholder: "Enter company name",
+          },
+          href: {
+            label: "Company page",
+            placeholder: "Enter company page URL",
+          },
+        },
+        logo: {
+          label: "Company logo",
+          placeholder: "Enter company logo URL",
+        },
+        text_en: {
+          label: "English description",
+          placeholder: "Description",
+        },
+        text_es: {
+          label: "Spanish description",
+          placeholder: "Description",
+        },
+        technologies: {
+          label: "Technologies",
+          placeholder: "Add the technologies you work with",
+        },
+      },
+      submit: "Submit",
+    },
   },
 } as const;

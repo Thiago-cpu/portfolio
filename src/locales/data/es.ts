@@ -40,4 +40,58 @@ export default {
     },
     tryAgain: "Reintentar",
   },
+  experience: {
+    title: "Experiencia Profesional",
+    create: {
+      ["add-button"]: "Agregar",
+      title: "Crear nueva experiencia",
+      description:
+        "Tambien podes ver una Preview.\nClickea en Guardar cuando termines.",
+      toast: {
+        title: "Guardado!",
+        description: "Tu trabajo ha sido guardado correctamente.",
+      },
+      fields: {
+        title: {
+          label: "Título",
+          placeholder: "Ingrese un título",
+        },
+        range: {
+          label: "Rango",
+          placeholder: "Ingrese el período de trabajo",
+        },
+        location: {
+          label: "Ubicación",
+          placeholder: "Ingrese la ubicación",
+        },
+        page: {
+          label: {
+            label: "Nombre de la empresa",
+            placeholder: "Ingrese el nombre de la empresa",
+          },
+          href: {
+            label: "Página de la empresa",
+            placeholder: "Ingrese la URL de la empresa",
+          },
+        },
+        logo: {
+          label: "Logo de la empresa",
+          placeholder: "Ingrese la URL del logo de la empresa",
+        },
+        text_en: {
+          label: "Descripción en inglés",
+          placeholder: "Descripción",
+        },
+        text_es: {
+          label: "Descripción en español",
+          placeholder: "Descripción",
+        },
+        technologies: {
+          label: "Tecnologías",
+          placeholder: "Agregue las tecnologías con las que trabaja",
+        },
+      },
+      submit: "Guardar",
+    },
+  },
 } as const;

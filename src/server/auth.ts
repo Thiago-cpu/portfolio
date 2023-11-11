@@ -21,7 +21,7 @@ declare module "next-auth" {
     user: {
       id: string;
       // ...other properties
-      // role: UserRole;
+      role: "admin" | "guest";
     } & DefaultSession["user"];
   }
 
@@ -38,13 +38,19 @@ declare module "next-auth" {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
+    session: async ({ session, user }) => {
+      const userFromDb = await db.query.users.findFirst({
+        where: (users, { eq }) => eq(users.id, user.id),
+      });
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: user.id,
+          role: userFromDb?.role,
+        },
+      };
+    },
   },
   adapter: DrizzleAdapter(db, mysqlTable),
   providers: [
@@ -61,3 +67,6 @@ export const authOptions: NextAuthOptions = {
  * @see https://next-auth.js.org/configuration/nextjs
  */
 export const getServerAuthSession = () => getServerSession(authOptions);
+
+export const getServerIsAdmin = () =>
+  getServerAuthSession().then((user) => user?.user.role === "admin");
