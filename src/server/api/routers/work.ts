@@ -44,6 +44,7 @@ export const workRouter = createTRPCRouter({
           },
         },
       },
+      orderBy: (t, { asc }) => asc(t.index),
     });
     const textKey = locale === "en" ? "text_en" : "text_es";
     return allWorks.map((work) => ({
