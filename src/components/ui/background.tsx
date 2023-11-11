@@ -78,6 +78,7 @@ const getStyles = (props: useStyleProps) => {
     ["--time"]: `${time}s`,
     ["--from-rotate"]: `${fromRotate}deg`,
     ["--to-rotate"]: `${toRotate}deg`,
+    pointerEvents: "auto",
   };
 
   return styles;
