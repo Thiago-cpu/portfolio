@@ -1,8 +1,7 @@
-import { type ContactRouterCreateSchema } from "@/server/api/routers/contact";
 import * as React from "react";
-import { type z } from "zod";
+import { type RouterInputs } from "../../../trpc/shared";
 
-type ContactTemplateProps = z.infer<typeof ContactRouterCreateSchema>;
+type ContactTemplateProps = RouterInputs["contact"]["create"];
 
 export const ContactTemplate: React.FC<Readonly<ContactTemplateProps>> = ({
   email,
