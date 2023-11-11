@@ -53,12 +53,19 @@ export default async function Works() {
                 </div>
               </div>
               <div className="shrink-0 self-center">
-                <Image
-                  src={work.logo}
-                  alt={work.page.label}
-                  width={100}
-                  height={100}
-                />
+                <Link
+                  href={work.page.href}
+                  target="_blank"
+                  className="pointer-events-auto"
+                >
+                  <Image
+                    src={work.logo}
+                    alt={work.page.label}
+                    width={100}
+                    height={100}
+                    priority={true}
+                  />
+                </Link>
               </div>
             </div>
           </AccordionContent>
