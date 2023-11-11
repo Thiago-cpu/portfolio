@@ -22,7 +22,7 @@ export default async function Works() {
     >
       {works.map((work, i) => (
         <AccordionItem value={`work-${i}`} key={i}>
-          <AccordionTrigger>
+          <AccordionTrigger className="px-[13px]">
             <div className="mr-2 flex grow justify-between">
               <p>{work.title}</p>
               <p>{work.range}</p>
