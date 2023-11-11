@@ -2,6 +2,7 @@ export default {
   links: {
     home: "Home",
     contact: "Contacto",
+    experience: "Experiencia",
   },
   home: {
     name: "Thiago Valdiviezo",
