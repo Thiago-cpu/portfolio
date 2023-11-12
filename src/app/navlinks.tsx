@@ -1,45 +1,47 @@
 "use client";
-import { useHash } from "@/hooks/useHash";
-import { cn } from "@/lib/utils";
 import { useScopedI18n } from "@/locales/client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, scroller } from "react-scroll";
+import { useEffect } from "react";
 
 const links = [
   {
     label: "home",
-    href: "/#home",
+    to: "#home",
   },
   {
     label: "experience",
-    href: "/#experience",
+    to: "#experience",
   },
   {
     label: "contact",
-    href: "/#contact",
+    to: "#contact",
   },
 ] as const;
 
 export function Navlinks() {
   const t = useScopedI18n("links");
-  const hash = useHash();
-  const pathname = usePathname();
-  const pathnameWithHash = `${pathname}${hash}`;
 
-  const hasHash = (s: string) => s.includes("#");
+  useEffect(() => {
+    if (!window.location.hash) return;
+    const link = links.find((link) => link.to === window.location.hash);
+    if (!link) return;
+
+    scroller.scrollTo(link.to, {
+      duration: 500,
+      smooth: true,
+    });
+  }, []);
 
   return links.map((link, i) => (
     <Link
+      activeClass="text-foreground"
+      className="pointer-events-auto cursor-pointer hover:text-foreground/80"
+      to={link.to}
+      hashSpy={true}
+      spy={true}
+      smooth={true}
+      duration={350}
       key={i}
-      href={link.href}
-      className={cn(
-        "pointer-events-auto text-foreground/60 hover:text-foreground/80",
-        {
-          "text-foreground": hasHash(link.href)
-            ? link.href === pathnameWithHash
-            : link.href === pathname,
-        },
-      )}
     >
       {t(link.label)}
     </Link>

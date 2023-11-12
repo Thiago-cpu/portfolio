@@ -30,10 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth`}
-    >
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="dark relative z-0">
         <TRPCReactProvider headers={headers()}>
           {children}
