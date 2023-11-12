@@ -120,6 +120,7 @@ export function ContactForm() {
             href="https://github.com/Thiago-cpu"
             target="_blank"
             className="pointer-events-auto"
+            tabIndex={-1}
           >
             <GitHubLogoIcon width={34} height={34} />
           </Link>
@@ -127,6 +128,7 @@ export function ContactForm() {
             href="https://www.linkedin.com/in/thiago-valdiviezo/"
             target="_blank"
             className="pointer-events-auto"
+            tabIndex={-1}
           >
             <LinkedInLogoIcon width={34} height={34} />
           </Link>

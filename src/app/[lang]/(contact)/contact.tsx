@@ -4,11 +4,10 @@ import { getScopedI18n } from "@/locales/server";
 
 export async function Contact() {
   const t = await getScopedI18n("contact");
-
   return (
     <div
-      id="contact"
-      className="pointer-events-none flex min-h-screen flex-col justify-center "
+      id="#contact"
+      className="pointer-events-none flex min-h-screen flex-col justify-center"
     >
       <div className="mb-3 flex flex-col items-center gap-3">
         <h2 className="bg-opacity-background text-center text-3xl backdrop-blur-[1px]">

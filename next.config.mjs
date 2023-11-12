@@ -7,7 +7,11 @@ await import("./src/env.mjs");
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
-    domains: ["media.licdn.com"],
+    remotePatterns: [
+      {
+        hostname: "media.licdn.com",
+      },
+    ],
   },
 };
 
