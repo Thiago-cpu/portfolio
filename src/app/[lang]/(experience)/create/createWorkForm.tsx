@@ -17,34 +17,44 @@ import { CreateWorkSchema } from "@/validations/workValidation";
 import { ArrayInput } from "@/components/ui/array-input";
 import { type z } from "zod";
 import { useCreateWork } from "./useCreateWork";
+import { useWorkStore } from "../store/workStore";
+import { useEffect } from "react";
 
 const formSchema = CreateWorkSchema;
-type TFormSchema = z.infer<typeof formSchema>;
+export type TFormSchema = z.infer<typeof formSchema>;
 
 interface CreateWorkFormProps {
   onSuccess?: () => void;
 }
 
 export function CreateWorkForm({ onSuccess }: CreateWorkFormProps) {
+  const { workToCreate, setWorkToCreate, emptyWorkToCreate } = useWorkStore(
+    (state) => ({
+      workToCreate: state.workToCreate,
+      setWorkToCreate: state.setWorkToCreate,
+      emptyWorkToCreate: state.emptyWorkToCreate,
+    }),
+  );
   const t = useScopedI18n("experience.create");
-  const { mutate, isLoading } = useCreateWork({ onSuccess });
   const form = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      index: 0,
-      logo: "",
-      location: "",
-      range: "",
-      text_en: "",
-      text_es: "",
-      title: "",
-      page: {
-        href: "",
-        label: "",
-      },
-      technologies: [],
+    defaultValues: workToCreate,
+    values: workToCreate,
+  });
+  const { mutate, isLoading } = useCreateWork({
+    onSuccess: () => {
+      emptyWorkToCreate();
+      // form.formState.
+      onSuccess?.();
     },
   });
+
+  useEffect(() => {
+    return () => {
+      setWorkToCreate(form.getValues());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function onSubmit(values: TFormSchema) {
     mutate(values);

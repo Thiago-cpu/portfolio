@@ -89,3 +89,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+html,
+body {
+  scrollbar-gutter: stable;
+}
