@@ -74,6 +74,7 @@ const ArrayInput = forwardRef<HTMLInputElement, InputProps>(
         />
         <div className="mt-4 flex flex-wrap gap-2">
           <InputValues
+            disabled={props.disabled}
             values={values}
             errors={errors}
             onRemove={handleRemoveValue}
@@ -88,6 +89,7 @@ interface InputValuesProps {
   values: string[];
   errors: Record<string, FieldError>[];
   onRemove: (idx: number) => void;
+  disabled?: boolean;
 }
 
 interface InputValue {
@@ -95,15 +97,20 @@ interface InputValue {
   hasError?: boolean;
   idx: number;
   onRemove: (idx: number) => void;
+  disabled?: boolean;
 }
 
 const InputValue = forwardRef<HTMLDivElement, InputValue>(
-  ({ value, hasError = false, idx, onRemove, ...rest }, ref) => {
+  (
+    { value, hasError = false, idx, onRemove, disabled = false, ...rest },
+    ref,
+  ) => {
     return (
       <Badge
         className={cn("hover:bg-priamry flex select-none gap-2", {
           "border-2 border-destructive": hasError,
         })}
+        variant={disabled ? "secondary" : "default"}
         ref={ref}
         {...rest}
       >
@@ -112,6 +119,7 @@ const InputValue = forwardRef<HTMLDivElement, InputValue>(
           className="h-fit rounded-full bg-secondary/80 p-0 hover:bg-secondary"
           onClick={() => onRemove(idx)}
           type="button"
+          disabled={disabled}
         >
           <X className="h-4 w-4 text-foreground" />
         </Button>
@@ -122,7 +130,12 @@ const InputValue = forwardRef<HTMLDivElement, InputValue>(
 
 InputValue.displayName = "InputValue";
 
-const InputValues = ({ values, errors, onRemove }: InputValuesProps) => {
+const InputValues = ({
+  values,
+  errors,
+  onRemove,
+  disabled,
+}: InputValuesProps) => {
   const id = useId();
   return values.map((v, i) => {
     const hasError = Boolean(errors?.[i]);
@@ -134,6 +147,7 @@ const InputValues = ({ values, errors, onRemove }: InputValuesProps) => {
           idx={i}
           onRemove={onRemove}
           hasError={false}
+          disabled={disabled}
         />
       );
     }
