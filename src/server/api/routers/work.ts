@@ -79,8 +79,15 @@ export const workRouter = createTRPCRouter({
             ),
           );
 
+        const next = await tx
+          .select({
+            index: sql<number>`COALESCE(MAX(${works.index}), 0) + 1 as max`,
+          })
+          .from(works);
+
         const newWork = await tx.insert(works).values({
           ...input,
+          index: next[0]?.index ?? 0,
           pageId: Number(newLink.insertId),
         });
 
