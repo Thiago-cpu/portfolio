@@ -13,9 +13,9 @@ const config = {
       },
     ],
   },
-  experimental: {
-    ppr: true,
-  },
+  // experimental: {
+  //   ppr: true,
+  // },
 };
 
 export default config;
