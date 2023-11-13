@@ -13,13 +13,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useScopedI18n } from "@/locales/client";
 import { Textarea } from "@/components/ui/textarea";
-import { api } from "@/trpc/react";
-import { useToast } from "@/components/ui/use-toast";
-import { ToastAction } from "@/components/ui/toast";
 import { CreateWorkSchema } from "@/validations/workValidation";
 import { ArrayInput } from "@/components/ui/array-input";
-import { useRouter } from "next/navigation";
 import { type z } from "zod";
+import { useCreateWork } from "./useCreateWork";
 
 const formSchema = CreateWorkSchema;
 type TFormSchema = z.infer<typeof formSchema>;
@@ -29,35 +26,10 @@ interface CreateWorkFormProps {
 }
 
 export function CreateWorkForm({ onSuccess }: CreateWorkFormProps) {
-  const { toast } = useToast();
-  const router = useRouter();
-  const translateToast = useScopedI18n("toast");
   const t = useScopedI18n("experience.create");
-  const { mutate, isLoading } = api.work.create.useMutation({
-    onSuccess: () => {
-      router.refresh();
-      toast({
-        title: t("toast.title"),
-        description: t("toast.description"),
-      });
-      onSuccess?.();
-    },
-    onError: (_err, values) => {
-      const tryAgain = () => mutate(values);
-      toast({
-        variant: "destructive",
-        title: translateToast("error.title"),
-        description: translateToast("error.description"),
-        action: (
-          <ToastAction onClick={tryAgain} altText={translateToast("tryAgain")}>
-            {translateToast("tryAgain")}
-          </ToastAction>
-        ),
-      });
-    },
-  });
+  const { mutate, isLoading } = useCreateWork({ onSuccess });
   const form = useForm<TFormSchema>({
-    resolver: zodResolver(CreateWorkSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: {
       index: 0,
       logo: "",

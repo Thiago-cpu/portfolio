@@ -1,5 +1,5 @@
-import DeleteWork from "./delete/deleteWork";
-import EditWork from "./edit/editWork";
+import DeleteWorkButton from "./delete/deleteWorkButton";
+import EditWorkButton from "./edit/editWorkButton";
 import { type Works } from "./store/workStore";
 
 interface WorkToolbar {
@@ -9,8 +9,8 @@ interface WorkToolbar {
 export default function WorkToolbar({ work }: WorkToolbar) {
   return (
     <div className="ml-2 flex gap-2">
-      <EditWork work={work} />
-      <DeleteWork work={work} />
+      <EditWorkButton work={work} />
+      <DeleteWorkButton work={work} />
     </div>
   );
 }

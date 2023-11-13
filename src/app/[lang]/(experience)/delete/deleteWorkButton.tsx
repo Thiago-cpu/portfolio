@@ -7,7 +7,7 @@ interface DeleteWorkProps {
   work: Works[number];
 }
 
-export default function DeleteWork({ work }: DeleteWorkProps) {
+export default function DeleteWorkButton({ work }: DeleteWorkProps) {
   const setWorkToDelete = useWorkStore((state) => state.setWorkToDelete);
 
   const handleClick: MouseEventHandler<HTMLDivElement> = (e) => {
