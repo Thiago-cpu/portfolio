@@ -8,7 +8,7 @@ interface WorkToolbar {
 
 export default function WorkToolbar({ work }: WorkToolbar) {
   return (
-    <div className="ml-2 flex gap-2">
+    <div className="flex gap-2 py-4">
       <EditWorkButton work={work} />
       <DeleteWorkButton work={work} />
     </div>

@@ -2,6 +2,7 @@
 import { TrashIcon } from "@radix-ui/react-icons";
 import { type MouseEventHandler } from "react";
 import { type Works, useWorkStore } from "../store/workStore";
+import { Button } from "@/components/ui/button";
 
 interface DeleteWorkProps {
   work: Works[number];
@@ -10,17 +11,19 @@ interface DeleteWorkProps {
 export default function DeleteWorkButton({ work }: DeleteWorkProps) {
   const setWorkToDelete = useWorkStore((state) => state.setWorkToDelete);
 
-  const handleClick: MouseEventHandler<HTMLDivElement> = (e) => {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     setWorkToDelete(work);
   };
 
   return (
-    <div
+    <Button
+      variant="destructive"
       onClick={handleClick}
-      className="rounded-full bg-destructive p-2 text-destructive-foreground hover:bg-destructive/90"
+      className="rounded-full"
+      size="icon"
     >
       <TrashIcon />
-    </div>
+    </Button>
   );
 }

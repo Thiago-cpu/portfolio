@@ -2,6 +2,7 @@
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import { type MouseEventHandler } from "react";
 import { useWorkStore, type Works } from "../store/workStore";
+import { Button } from "@/components/ui/button";
 
 interface EditWorkProps {
   work: Works[number];
@@ -10,17 +11,14 @@ interface EditWorkProps {
 export default function EditWorkButton({ work }: EditWorkProps) {
   const setWorkToEdit = useWorkStore((state) => state.setWorkToEdit);
 
-  const handleClick: MouseEventHandler<HTMLDivElement> = (e) => {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     setWorkToEdit(work);
   };
 
   return (
-    <div
-      onClick={handleClick}
-      className="rounded-full bg-primary p-2 text-primary-foreground hover:bg-primary/90"
-    >
+    <Button onClick={handleClick} size="icon" className="rounded-full">
       <Pencil1Icon />
-    </div>
+    </Button>
   );
 }
