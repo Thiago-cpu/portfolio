@@ -13,3 +13,7 @@ export const CreateWorkSchema = z.object({
   logo: z.string().url(),
   technologies: z.array(CreateTechnologySchema).min(1),
 });
+
+export const DeleteWorkSchema = z.object({
+  id: z.union([z.string(), z.number()]).transform((value) => Number(value)),
+});

@@ -8,8 +8,11 @@ import { links } from "@/server/db/schema/links";
 import { technologies } from "@/server/db/schema/technologies";
 import { works } from "@/server/db/schema/works";
 import { worksToTechnologies } from "@/server/db/schema/worksToTechnologies";
-import { CreateWorkSchema } from "@/validations/workValidation";
-import { sql, inArray } from "drizzle-orm";
+import {
+  CreateWorkSchema,
+  DeleteWorkSchema,
+} from "@/validations/workValidation";
+import { sql, inArray, eq } from "drizzle-orm";
 
 export const workRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
@@ -17,6 +20,7 @@ export const workRouter = createTRPCRouter({
 
     const allWorks = await ctx.db.query.works.findMany({
       columns: {
+        id: true,
         title: true,
         text_es: true,
         text_en: true,
@@ -91,6 +95,19 @@ export const workRouter = createTRPCRouter({
         await tx.insert(worksToTechnologies).values(newWorksToTechnologies);
       });
 
+      return true;
+    }),
+  delete: adminProtectedProcedure
+    .input(DeleteWorkSchema)
+    .mutation(async ({ input, ctx }) => {
+      await ctx.db.transaction(async (tx) => {
+        const work = await tx.query.works.findFirst({
+          where: (works, { eq }) => eq(works.id, input.id),
+        });
+        if (!work) throw new Error("work doesn't exist");
+        await tx.delete(links).where(eq(links.id, work.pageId));
+        await tx.delete(works).where(eq(works.id, work.id));
+      });
       return true;
     }),
 });
