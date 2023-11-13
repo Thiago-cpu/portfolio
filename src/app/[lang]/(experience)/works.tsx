@@ -36,15 +36,15 @@ function WorkList({ works, isAdmin }: { works: Works; isAdmin: boolean }) {
         <AccordionItem value={`work-${i}`} key={i}>
           <AccordionTrigger
             className="px-[13px]"
-            rightChevron={isAdmin && <WorkToolbar work={work} />}
+            rightTrigger={isAdmin && <WorkToolbar work={work} />}
           >
             <div className="mr-2 flex grow flex-wrap justify-between">
               <p>{work.title}</p>
               <p>{work.range}</p>
             </div>
           </AccordionTrigger>
-          <AccordionContent className=" overflow-hidden text-ellipsis  border border-b-0 px-3 pt-4 shadow-sm">
-            <div className="flex flex-col-reverse gap-5 md:flex-row">
+          <AccordionContent className="overflow-hidden text-ellipsis border border-b-0 px-3 shadow-sm">
+            <div className="flex flex-col-reverse gap-5 pt-4 md:flex-row">
               <div className="flex grow flex-col gap-4">
                 <div className="flex  items-center gap-2 text-foreground/60">
                   <SewingPinFilledIcon className="shrink-0" width={16} />
