@@ -20,7 +20,10 @@ import { ToastAction } from "@/components/ui/toast";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { CreateContactSchema } from "@/validations/contactValidation";
-import { type RouterInputs } from "@/trpc/shared";
+import { type z } from "zod";
+
+const formSchema = CreateContactSchema;
+type TFormSchema = z.infer<typeof formSchema>;
 
 export function ContactForm() {
   const { toast } = useToast();
@@ -47,8 +50,8 @@ export function ContactForm() {
       });
     },
   });
-  const form = useForm<RouterInputs["contact"]["create"]>({
-    resolver: zodResolver(CreateContactSchema),
+  const form = useForm<TFormSchema>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -56,7 +59,7 @@ export function ContactForm() {
     },
   });
 
-  function onSubmit(values: RouterInputs["contact"]["create"]) {
+  function onSubmit(values: TFormSchema) {
     mutate(values);
   }
 

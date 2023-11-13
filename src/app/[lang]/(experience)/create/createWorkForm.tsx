@@ -16,10 +16,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { api } from "@/trpc/react";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import { type RouterInputs } from "@/trpc/shared";
 import { CreateWorkSchema } from "@/validations/workValidation";
 import { ArrayInput } from "@/components/ui/array-input";
 import { useRouter } from "next/navigation";
+import { type z } from "zod";
+
+const formSchema = CreateWorkSchema;
+type TFormSchema = z.infer<typeof formSchema>;
 
 interface CreateWorkFormProps {
   onSuccess?: () => void;
@@ -53,7 +56,7 @@ export function CreateWorkForm({ onSuccess }: CreateWorkFormProps) {
       });
     },
   });
-  const form = useForm<RouterInputs["work"]["create"]>({
+  const form = useForm<TFormSchema>({
     resolver: zodResolver(CreateWorkSchema),
     defaultValues: {
       index: 0,
@@ -71,7 +74,7 @@ export function CreateWorkForm({ onSuccess }: CreateWorkFormProps) {
     },
   });
 
-  function onSubmit(values: RouterInputs["work"]["create"]) {
+  function onSubmit(values: TFormSchema) {
     mutate(values);
   }
 
