@@ -93,5 +93,19 @@ export default {
       },
       submit: "Submit",
     },
+    delete: {
+      toast: {
+        title: "Success",
+        description: "Your work experience has been deleted successfully.",
+      },
+      confirm: {
+        title: "Are you sure absolutely sure?",
+        description: {
+          1: "This action cannot be undone.",
+          2: "This will permanently delete your work experience from our servers.",
+        },
+        submit: "Confirm",
+      },
+    },
   },
 } as const;

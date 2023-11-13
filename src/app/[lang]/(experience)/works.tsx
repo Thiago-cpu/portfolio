@@ -10,10 +10,22 @@ import { api } from "@/trpc/server";
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLinkIcon, SewingPinFilledIcon } from "@radix-ui/react-icons";
+import { getServerIsAdmin } from "@/server/auth";
+import dynamic from "next/dynamic";
+import { type Works } from "./store/workStore";
+
+const WorkToolbar = dynamic(() => import("./workToolbar"));
 
 export default async function Works() {
-  const works = await api.work.getAll.query();
+  const [works, isAdmin] = await Promise.all([
+    api.work.getAll.query(),
+    getServerIsAdmin(),
+  ]);
 
+  return <WorkList works={works} isAdmin={isAdmin} />;
+}
+
+function WorkList({ works, isAdmin }: { works: Works; isAdmin: boolean }) {
   return (
     <Accordion
       type="single"
@@ -22,8 +34,11 @@ export default async function Works() {
     >
       {works.map((work, i) => (
         <AccordionItem value={`work-${i}`} key={i}>
-          <AccordionTrigger className="px-[13px]">
-            <div className="mr-2 flex grow justify-between">
+          <AccordionTrigger
+            className="px-[13px]"
+            rightChevron={isAdmin && <WorkToolbar work={work} />}
+          >
+            <div className="mr-2 flex grow flex-wrap justify-between">
               <p>{work.title}</p>
               <p>{work.range}</p>
             </div>

@@ -5,7 +5,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getServerIsAdmin } from "@/server/auth";
 import dynamic from "next/dynamic";
 
-const DynamicCreateWork = dynamic(() => import("./createWork"));
+const CreateWork = dynamic(() => import("./create/createWork"));
+const DeleteWorkConfirm = dynamic(() => import("./delete/deleteWorkConfirm"));
 
 export default async function Experience() {
   const [t, isAdmin] = await Promise.all([
@@ -24,8 +25,12 @@ export default async function Experience() {
       <Suspense fallback={<Skeleton className="h-[56px] w-full" />}>
         <Works />
       </Suspense>
-
-      {isAdmin && <DynamicCreateWork />}
+      {isAdmin && (
+        <>
+          <CreateWork />
+          <DeleteWorkConfirm />
+        </>
+      )}
     </div>
   );
 }

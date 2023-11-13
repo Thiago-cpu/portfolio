@@ -94,5 +94,19 @@ export default {
       },
       submit: "Guardar",
     },
+    delete: {
+      toast: {
+        title: "Éxito",
+        description: "Tu experiencia laboral se ha eliminada correctamente.",
+      },
+      confirm: {
+        title: "¿Estás completamente seguro?",
+        description: {
+          1: "Esta acción no se puede deshacer.",
+          2: "Esto eliminará permanentemente tu experiencia laboral de nuestros servidores.",
+        },
+        submit: "Confirmar",
+      },
+    },
   },
 } as const;
