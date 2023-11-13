@@ -94,6 +94,56 @@ export default {
       },
       submit: "Guardar",
     },
+    update: {
+      title: "Actualizar experiencia profesional",
+      description:
+        "También puedes ver una vista previa.\nHaz clic en guardar cuando hayas terminado.",
+      toast: {
+        title: "Éxito",
+        description: "Tu trabajo se ha actualizado correctamente.",
+      },
+      fields: {
+        title: {
+          label: "Título",
+          placeholder: "Ingresa un título",
+        },
+        range: {
+          label: "Rango",
+          placeholder: "Ingresa el periodo de trabajo",
+        },
+        location: {
+          label: "Ubicación",
+          placeholder: "Ingresa la ubicación",
+        },
+        page: {
+          label: {
+            label: "Nombre de la empresa",
+            placeholder: "Ingresa el nombre de la empresa",
+          },
+          href: {
+            label: "Página de la empresa",
+            placeholder: "Ingresa la URL de la página de la empresa",
+          },
+        },
+        logo: {
+          label: "Logo de la empresa",
+          placeholder: "Ingresa la URL del logo de la empresa",
+        },
+        text_en: {
+          label: "Descripción en inglés",
+          placeholder: "Descripción",
+        },
+        text_es: {
+          label: "Descripción en español",
+          placeholder: "Descripción",
+        },
+        technologies: {
+          label: "Tecnologías",
+          placeholder: "Agrega las tecnologías con las que trabajaste",
+        },
+      },
+      submit: "Guardar",
+    },
     delete: {
       toast: {
         title: "Éxito",

@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 
 const CreateWork = dynamic(() => import("./create/createWork"));
 const DeleteWorkConfirm = dynamic(() => import("./delete/deleteWorkConfirm"));
+const EditWork = dynamic(() => import("./edit/editWork"));
 
 export default async function Experience() {
   const [t, isAdmin] = await Promise.all([
@@ -29,6 +30,7 @@ export default async function Experience() {
         <>
           <CreateWork />
           <DeleteWorkConfirm />
+          <EditWork />
         </>
       )}
     </div>

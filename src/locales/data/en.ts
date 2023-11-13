@@ -93,6 +93,55 @@ export default {
       },
       submit: "Submit",
     },
+    update: {
+      title: "Update professional experience",
+      description: "You can also see a Preview.\nClick save when you're done.",
+      toast: {
+        title: "Success",
+        description: "Your work has been updated successfully.",
+      },
+      fields: {
+        title: {
+          label: "Title",
+          placeholder: "Enter a title",
+        },
+        range: {
+          label: "Range",
+          placeholder: "Enter work period",
+        },
+        location: {
+          label: "Location",
+          placeholder: "Enter location",
+        },
+        page: {
+          label: {
+            label: "Company name",
+            placeholder: "Enter company name",
+          },
+          href: {
+            label: "Company page",
+            placeholder: "Enter company page URL",
+          },
+        },
+        logo: {
+          label: "Company logo",
+          placeholder: "Enter company logo URL",
+        },
+        text_en: {
+          label: "English description",
+          placeholder: "Description",
+        },
+        text_es: {
+          label: "Spanish description",
+          placeholder: "Description",
+        },
+        technologies: {
+          label: "Technologies",
+          placeholder: "Add the technologies you work with",
+        },
+      },
+      submit: "Submit",
+    },
     delete: {
       toast: {
         title: "Success",
