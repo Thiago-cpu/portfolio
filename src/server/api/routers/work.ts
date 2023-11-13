@@ -11,7 +11,9 @@ import { worksToTechnologies } from "@/server/db/schema/worksToTechnologies";
 import {
   CreateWorkSchema,
   DeleteWorkSchema,
+  UpdateWorkSchema,
 } from "@/validations/workValidation";
+import { TRPCError } from "@trpc/server";
 import { sql, inArray, eq } from "drizzle-orm";
 
 export const workRouter = createTRPCRouter({
@@ -61,12 +63,11 @@ export const workRouter = createTRPCRouter({
     .input(CreateWorkSchema)
     .mutation(async ({ ctx, input: { page, ...input } }) => {
       await ctx.db.transaction(async (tx) => {
-        const newLink = await tx.insert(links).values(page).execute();
+        const newLink = await tx.insert(links).values(page);
         await tx
           .insert(technologies)
           .values(input.technologies)
-          .onDuplicateKeyUpdate({ set: { id: sql`id` } })
-          .execute();
+          .onDuplicateKeyUpdate({ set: { id: sql`id` } });
 
         const newTechs = await tx
           .select({ technologyId: technologies.id })
@@ -76,16 +77,12 @@ export const workRouter = createTRPCRouter({
               technologies.name,
               input.technologies.map((t) => t.name),
             ),
-          )
-          .execute();
+          );
 
-        const newWork = await tx
-          .insert(works)
-          .values({
-            ...input,
-            pageId: Number(newLink.insertId),
-          })
-          .execute();
+        const newWork = await tx.insert(works).values({
+          ...input,
+          pageId: Number(newLink.insertId),
+        });
 
         const newWorksToTechnologies = newTechs.map(({ technologyId }) => ({
           workId: Number(newWork.insertId),
@@ -104,10 +101,59 @@ export const workRouter = createTRPCRouter({
         const work = await tx.query.works.findFirst({
           where: (works, { eq }) => eq(works.id, input.id),
         });
-        if (!work) throw new Error("work doesn't exist");
+        if (!work) throw new TRPCError({ code: "NOT_FOUND" });
         await tx.delete(links).where(eq(links.id, work.pageId));
         await tx.delete(works).where(eq(works.id, work.id));
       });
       return true;
     }),
+  update: adminProtectedProcedure
+    .input(UpdateWorkSchema)
+    .mutation(
+      async ({
+        ctx,
+        input: { page, technologies: inputTechnologies, ...input },
+      }) => {
+        await ctx.db.transaction(async (tx) => {
+          const work = await tx.query.works.findFirst({
+            where: (works, { eq }) => eq(works.id, input.id),
+          });
+          if (!work) throw new TRPCError({ code: "NOT_FOUND" });
+          console.log({ work });
+          await tx.update(links).set(page).where(eq(links.id, work.pageId));
+
+          await tx
+            .insert(technologies)
+            .values(inputTechnologies)
+            .onDuplicateKeyUpdate({ set: { id: sql`id` } });
+
+          const map = inputTechnologies.map((t) => t.name);
+
+          const newTechs = await tx
+            .select({ technologyId: technologies.id })
+            .from(technologies)
+            .where(inArray(technologies.name, map));
+
+          await tx
+            .update(works)
+            .set({
+              ...input,
+            })
+            .where(eq(works.id, input.id));
+
+          await tx
+            .delete(worksToTechnologies)
+            .where(eq(worksToTechnologies.workId, work.id));
+
+          const newWorksToTechnologies = newTechs.map(({ technologyId }) => ({
+            workId: work.id,
+            technologyId,
+          }));
+
+          await tx.insert(worksToTechnologies).values(newWorksToTechnologies);
+        });
+
+        return true;
+      },
+    ),
 });

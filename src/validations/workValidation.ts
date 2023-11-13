@@ -17,3 +17,5 @@ export const CreateWorkSchema = z.object({
 export const DeleteWorkSchema = z.object({
   id: z.union([z.string(), z.number()]).transform((value) => Number(value)),
 });
+
+export const UpdateWorkSchema = CreateWorkSchema.merge(DeleteWorkSchema);
