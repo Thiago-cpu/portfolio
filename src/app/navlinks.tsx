@@ -1,7 +1,6 @@
 "use client";
 import { useScopedI18n } from "@/locales/client";
-import { Link, scroller } from "react-scroll";
-import { useEffect } from "react";
+import { Link } from "react-scroll";
 
 const links = [
   {
@@ -20,17 +19,6 @@ const links = [
 
 export function Navlinks() {
   const t = useScopedI18n("links");
-
-  useEffect(() => {
-    if (!window.location.hash) return;
-    const link = links.find((link) => link.to === window.location.hash);
-    if (!link) return;
-
-    scroller.scrollTo(link.to, {
-      duration: 500,
-      smooth: true,
-    });
-  }, []);
 
   return links.map((link, i) => (
     <Link
