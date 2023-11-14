@@ -1,6 +1,6 @@
-import DeleteWorkButton from "./delete/deleteWorkButton";
-import EditWorkButton from "./edit/editWorkButton";
-import { type Works } from "./store/workStore";
+import DeleteWorkButton from "../delete/deleteWorkButton";
+import EditWorkButton from "../edit/editWorkButton";
+import { type Works } from "../store/workStore";
 
 interface WorkToolbar {
   work: Works[number];

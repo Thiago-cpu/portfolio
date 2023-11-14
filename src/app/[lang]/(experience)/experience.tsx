@@ -1,5 +1,5 @@
 import { getScopedI18n } from "@/locales/server";
-import Works from "./works";
+import Works from "./list/works";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getServerIsAdmin } from "@/server/auth";
