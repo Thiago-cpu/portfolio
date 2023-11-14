@@ -18,6 +18,7 @@ import { useUpdateWork } from "./useUpdateWork";
 import { useWorkStore } from "../store/workStore";
 import { type z } from "zod";
 import { UpdateWorkSchema } from "@/validations/workValidation";
+import WorkPreview from "../common/workPreview";
 
 interface UpdateWorkFormProps {
   onSuccess?: () => void;
@@ -222,6 +223,7 @@ export function EditWorkForm({ onSuccess }: UpdateWorkFormProps) {
           </Button>
         </div>
       </form>
+      <WorkPreview />
     </Form>
   );
 }

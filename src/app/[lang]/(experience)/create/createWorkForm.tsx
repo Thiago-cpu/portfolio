@@ -19,6 +19,7 @@ import { type z } from "zod";
 import { useCreateWork } from "./useCreateWork";
 import { useWorkStore } from "../store/workStore";
 import { useEffect } from "react";
+import WorkPreview from "../common/workPreview";
 
 const formSchema = CreateWorkSchema;
 export type TFormSchema = z.infer<typeof formSchema>;
@@ -238,6 +239,7 @@ export function CreateWorkForm({ onSuccess }: CreateWorkFormProps) {
           </Button>
         </div>
       </form>
+      <WorkPreview />
     </Form>
   );
 }

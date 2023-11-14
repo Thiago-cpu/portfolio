@@ -6,6 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { createPortal } from "react-dom";
 
 const Sheet = SheetPrimitive.Root;
 
@@ -61,10 +62,10 @@ const SheetContent = React.forwardRef<
   SheetContentProps
 >(({ side = "right", className, children, ...props }, ref) => (
   <SheetPortal>
-    <SheetOverlay style={{ pointerEvents: "none" }}>
+    <SheetOverlay className="flex">
       <SheetPrimitive.Content
         ref={ref}
-        className={cn(sheetVariants({ side }), className)}
+        className={cn(sheetVariants({ side }), className, "relative")}
         {...props}
       >
         {children}
@@ -73,10 +74,25 @@ const SheetContent = React.forwardRef<
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>
+      <div id="preview" className="flex grow items-center justify-center"></div>
     </SheetOverlay>
   </SheetPortal>
 ));
 SheetContent.displayName = SheetPrimitive.Content.displayName;
+
+const PreviewPortal = ({ children }: { children: React.ReactNode }) => {
+  const portalContainerRef = React.useRef<HTMLElement | null>(null);
+
+  React.useEffect(() => {
+    const portalContainer = document.getElementById("preview");
+    portalContainerRef.current = portalContainer;
+  }, []);
+
+  // Render the component's children into the portal container
+  return portalContainerRef.current
+    ? createPortal(children, portalContainerRef.current)
+    : null;
+};
 
 const SheetHeader = ({
   className,
@@ -138,4 +154,5 @@ export {
   SheetFooter,
   SheetTitle,
   SheetDescription,
+  PreviewPortal,
 };
