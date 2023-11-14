@@ -1,4 +1,4 @@
-import { Background } from "@/components/ui/background";
+import { Background } from "@/app/background/background";
 import { I18nProviderClient } from "@/locales/client";
 import { type ReactElement } from "react";
 import { Navbar } from "../navbar";

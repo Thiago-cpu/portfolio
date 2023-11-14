@@ -1,5 +1,6 @@
 import { cn, randomBetween } from "@/lib/utils";
 import { type VariantProps, cva } from "class-variance-authority";
+import AnimatedSquare from "./AnimatedSquare";
 
 type BackgroundProps = SquareListProps;
 
@@ -95,11 +96,11 @@ function Square(props: SquareProps) {
   };
 
   return (
-    <div
+    <AnimatedSquare
       className={cn(squareVariants({ size, className }))}
       {...rest}
       style={mergedStyles}
-    ></div>
+    ></AnimatedSquare>
   );
 }
 

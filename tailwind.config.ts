@@ -89,11 +89,24 @@ module.exports = {
             boxShadow: "0 0 10px 5px rgba(112, 128, 144, 0.7)",
           },
         },
+        jump: {
+          "0%, 100%": {
+            scale: "1",
+          },
+          "10%": {
+            scale: "0.97",
+          },
+          "50%": {
+            scale: "1.03",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         square: "square-rotate var(--time, 4s) linear infinite",
+        "square-jump":
+          "square-rotate var(--time, 4s) linear infinite, jump 0.5s both ease-in-out",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
