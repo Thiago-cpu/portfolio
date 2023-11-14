@@ -159,4 +159,5 @@ export default {
       },
     },
   },
+  logout: "Sign out",
 } as const;

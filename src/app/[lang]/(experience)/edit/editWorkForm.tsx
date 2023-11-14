@@ -31,7 +31,6 @@ export function EditWorkForm({ onSuccess }: UpdateWorkFormProps) {
   const t = useScopedI18n("experience.update");
   const { mutate, isLoading } = useUpdateWork({ onSuccess });
   const workToEdit = useWorkStore((state) => state.workToEdit);
-  // if (!workToEdit) throw new Error("cant update without work to edit");
 
   const form = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
