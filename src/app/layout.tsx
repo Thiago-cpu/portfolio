@@ -5,6 +5,7 @@ import { type Metadata } from "next/types";
 import { Analytics } from "@vercel/analytics/react";
 import { TRPCReactProvider } from "@/trpc/react";
 import { Toaster } from "@/components/ui/toaster";
+import { Background } from "@/components/background/background";
 
 export const metadata: Metadata = {
   title: "Thiago Valdiviezo",
@@ -33,6 +34,7 @@ export default function RootLayout({
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="dark relative z-0">
         <TRPCReactProvider headers={headers()}>
+          <Background squares={25} />
           {children}
           <Toaster />
         </TRPCReactProvider>
