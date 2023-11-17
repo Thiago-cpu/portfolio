@@ -44,7 +44,7 @@ export default {
   experience: {
     title: "Professional Experience",
     create: {
-      ["add-button"]: "Add new one",
+      "add-button": "Add new one",
       title: "Add new professional experience",
       description: "You can also see a Preview.\nClick save when you're done.",
       toast: {
@@ -157,5 +157,11 @@ export default {
       },
     },
   },
+  errors: {
+    "min#other": "Must have at least {count} characters.",
+    "max#other": "Must have at most {count} characters.",
+    required: "Required.",
+  },
   logout: "Sign out",
+  language: "Language",
 } as const;

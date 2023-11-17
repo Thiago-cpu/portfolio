@@ -44,7 +44,7 @@ export default {
   experience: {
     title: "Experiencia Profesional",
     create: {
-      ["add-button"]: "Agregar",
+      "add-button": "Agregar",
       title: "Crear nueva experiencia",
       description:
         "Tambien podes ver una Preview.\nClickea en Guardar cuando termines.",
@@ -159,5 +159,11 @@ export default {
       },
     },
   },
+  errors: {
+    "min#other": "Must have at least {count} characters.",
+    "max#other": "Must have at most {count} characters.",
+    required: "Required.",
+  },
   logout: "Sign out",
+  language: "Lenguaje",
 } as const;
