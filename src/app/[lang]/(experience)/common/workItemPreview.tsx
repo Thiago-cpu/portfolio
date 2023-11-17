@@ -58,7 +58,7 @@ export function WorkItemPreview({ value, work }: WorkItemProps) {
             </div>
           </div>
           <div className="shrink-0 self-center">
-            {work.logo ? (
+            {work.logo && work.logo.startsWith("https") ? (
               <Image
                 src={work.logo}
                 alt={work.page?.label ?? "Logo"}
