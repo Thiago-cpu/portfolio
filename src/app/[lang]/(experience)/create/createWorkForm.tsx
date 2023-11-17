@@ -16,10 +16,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { CreateWorkSchema } from "@/validations/workValidation";
 import { ArrayInput } from "@/components/ui/array-input";
 import { type z } from "zod";
-import { useCreateWork } from "./useCreateWork";
 import { useWorkStore } from "../store/workStore";
 import { useEffect } from "react";
 import WorkPreview from "../common/workPreview";
+import { useCreateWork } from "../../../services/useWorkService";
 
 const formSchema = CreateWorkSchema;
 export type TFormSchema = z.infer<typeof formSchema>;
@@ -45,7 +45,6 @@ export function CreateWorkForm({ onSuccess }: CreateWorkFormProps) {
   const { mutate, isLoading } = useCreateWork({
     onSuccess: () => {
       emptyWorkToCreate();
-      // form.formState.
       onSuccess?.();
     },
   });

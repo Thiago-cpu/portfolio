@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { useScopedI18n } from "@/locales/client";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrayInput } from "@/components/ui/array-input";
-import { useUpdateWork } from "./useUpdateWork";
+import { useUpdateWork } from "../../../services/useWorkService";
 import { useWorkStore } from "../store/workStore";
 import { type z } from "zod";
 import { UpdateWorkSchema } from "@/validations/workValidation";
