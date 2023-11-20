@@ -158,9 +158,10 @@ export default {
     },
   },
   errors: {
-    "min#other": "Must have at least {count} characters.",
-    "max#other": "Must have at most {count} characters.",
+    "min#other": "Must have at least {minimum} characters.",
+    "max#other": "Must have at most {maximum} characters.",
     required: "Required.",
+    email: "Should be an email",
   },
   logout: "Sign out",
   language: "Language",

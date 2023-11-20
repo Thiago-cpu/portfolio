@@ -1,7 +1,5 @@
 "use client";
-
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
   FormControl,
@@ -21,6 +19,7 @@ import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { CreateContactSchema } from "@/validations/contactValidation";
 import { type z } from "zod";
+import { zodResolver } from "@/lib/zodResolver";
 
 const formSchema = CreateContactSchema;
 type TFormSchema = z.infer<typeof formSchema>;

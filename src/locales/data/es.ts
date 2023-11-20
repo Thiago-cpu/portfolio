@@ -160,9 +160,10 @@ export default {
     },
   },
   errors: {
-    "min#other": "Must have at least {count} characters.",
-    "max#other": "Must have at most {count} characters.",
-    required: "Required.",
+    "min#other": "Debe tener al menos {minimum} caracteres.",
+    "max#other": "Debe tener como máximo {maximum} caracteres.",
+    required: "Obligatorio.",
+    email: "Debe de ser un mail válido",
   },
   logout: "Sign out",
   language: "Lenguaje",

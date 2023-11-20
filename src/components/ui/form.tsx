@@ -12,6 +12,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
+import { useI18n } from "@/locales/client";
 
 const Form = FormProvider;
 
@@ -145,15 +146,28 @@ const FormMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {
+  const t = useI18n() as (
+    msg: string | undefined,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    error: any,
+  ) => string | undefined;
   const { error, formMessageId } = useFormField();
-  const errorToString = Array.isArray(error) ? "" : String(error?.message);
+  const errorToString = Array.isArray(error)
+    ? ""
+    : t(error?.message, error) ?? error?.message;
   const body = error ? errorToString : children;
 
   return (
     <p
       ref={ref}
       id={formMessageId}
-      className={cn(" text-sm font-medium text-destructive", className)}
+      className={cn(
+        " text-sm font-medium text-destructive",
+        {
+          "mt-1": Boolean(body),
+        },
+        className,
+      )}
       {...props}
     >
       {body}

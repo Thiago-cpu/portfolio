@@ -15,7 +15,7 @@ import {
 } from "./tooltip";
 import { type FieldError } from "react-hook-form";
 
-export type InputProps = Omit<
+export type ArrayInputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   "value" | "onChange"
 > & {
@@ -23,7 +23,7 @@ export type InputProps = Omit<
   onChange?: (p: string[]) => void;
 };
 
-const ArrayInput = forwardRef<HTMLInputElement, InputProps>(
+const ArrayInput = forwardRef<HTMLInputElement, ArrayInputProps>(
   ({ className, type, onChange, value: controlledValues, ...props }, ref) => {
     const [uncontrolledValues, setUncontrolledValues] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState("");
