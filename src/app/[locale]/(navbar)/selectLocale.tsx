@@ -23,7 +23,7 @@ export default function SelectLocale({
 
   function onSelectChange(nextLocale: string) {
     startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
+      router.replace(pathname, { locale: nextLocale, scroll: false });
     });
   }
   // do something with is pending opacity babe
