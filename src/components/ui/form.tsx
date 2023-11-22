@@ -12,7 +12,8 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
-import { useI18n } from "@/locales/client";
+import { useTranslate } from "@/locales/utils";
+import { type TranslationValues } from "next-intl";
 
 const Form = FormProvider;
 
@@ -146,15 +147,15 @@ const FormMessage = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, children, ...props }, ref) => {
-  const t = useI18n() as (
-    msg: string | undefined,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    error: any,
-  ) => string | undefined;
+  const t = useTranslate();
   const { error, formMessageId } = useFormField();
-  const errorToString = Array.isArray(error)
-    ? ""
-    : t(error?.message, error) ?? error?.message;
+  const plurals = {
+    ...error,
+  } as TranslationValues;
+  const errorToString =
+    (Array.isArray(error)
+      ? ""
+      : error?.message && t(error?.message, plurals)) ?? error?.message;
   const body = error ? errorToString : children;
 
   return (

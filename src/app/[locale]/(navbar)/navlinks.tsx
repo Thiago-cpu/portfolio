@@ -1,6 +1,5 @@
-"use client";
-import { useScopedI18n } from "@/locales/client";
-import { Link } from "react-scroll";
+import { ScrollLink } from "@/components/ui/scrollLink";
+import { useTranslate } from "@/locales/utils";
 
 const links = [
   {
@@ -18,10 +17,10 @@ const links = [
 ] as const;
 
 export function Navlinks() {
-  const t = useScopedI18n("links");
+  const t = useTranslate("links");
 
   return links.map((link, i) => (
-    <Link
+    <ScrollLink
       activeClass="text-foreground"
       className="pointer-events-auto cursor-pointer hover:text-foreground/80"
       to={link.to}
@@ -32,6 +31,6 @@ export function Navlinks() {
       key={i}
     >
       {t(link.label)}
-    </Link>
+    </ScrollLink>
   ));
 }

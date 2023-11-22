@@ -1,4 +1,3 @@
-import { getCurrentLocale } from "@/locales/server";
 import {
   adminProtectedProcedure,
   createTRPCRouter,
@@ -11,53 +10,54 @@ import { worksToTechnologies } from "@/server/db/schema/worksToTechnologies";
 import {
   CreateWorkSchema,
   DeleteWorkSchema,
+  GetAllWorkSchema,
   UpdateWorkSchema,
 } from "@/validations/workValidation";
 import { TRPCError } from "@trpc/server";
 import { sql, inArray, eq } from "drizzle-orm";
 
 export const workRouter = createTRPCRouter({
-  getAll: publicProcedure.query(async ({ ctx }) => {
-    const locale = getCurrentLocale();
-
-    const allWorks = await ctx.db.query.works.findMany({
-      columns: {
-        id: true,
-        title: true,
-        text_es: true,
-        text_en: true,
-        index: true,
-        location: true,
-        logo: true,
-        range: true,
-      },
-
-      with: {
-        page: {
-          columns: {
-            href: true,
-            label: true,
-          },
+  getAll: publicProcedure
+    .input(GetAllWorkSchema)
+    .query(async ({ ctx, input }) => {
+      const allWorks = await ctx.db.query.works.findMany({
+        columns: {
+          id: true,
+          title: true,
+          text_es: true,
+          text_en: true,
+          index: true,
+          location: true,
+          logo: true,
+          range: true,
         },
-        technologies: {
-          columns: {},
-          with: {
-            technology: {
-              columns: {
-                name: true,
+
+        with: {
+          page: {
+            columns: {
+              href: true,
+              label: true,
+            },
+          },
+          technologies: {
+            columns: {},
+            with: {
+              technology: {
+                columns: {
+                  name: true,
+                },
               },
             },
           },
         },
-      },
-      orderBy: (t, { asc }) => asc(t.index),
-    });
-    const textKey = locale === "en" ? "text_en" : "text_es";
-    return allWorks.map((work) => ({
-      ...work,
-      text: work[textKey],
-    }));
-  }),
+        orderBy: (t, { asc }) => asc(t.index),
+      });
+      const textKey = input.locale === "en" ? "text_en" : "text_es";
+      return allWorks.map((work) => ({
+        ...work,
+        text: work[textKey],
+      }));
+    }),
 
   create: adminProtectedProcedure
     .input(CreateWorkSchema)
@@ -126,7 +126,6 @@ export const workRouter = createTRPCRouter({
             where: (works, { eq }) => eq(works.id, input.id),
           });
           if (!work) throw new TRPCError({ code: "NOT_FOUND" });
-          console.log({ work });
           await tx.update(links).set(page).where(eq(links.id, work.pageId));
 
           await tx

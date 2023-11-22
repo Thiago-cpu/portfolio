@@ -1,9 +1,15 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ContactForm } from "./contactForm";
-import { getScopedI18n } from "@/locales/server";
+import {
+  useMessages,
+  useTranslate,
+  NextIntlClientProvider,
+} from "@/locales/utils";
+import pick from "lodash/pick";
 
-export async function Contact() {
-  const t = await getScopedI18n("contact");
+export function Contact() {
+  const t = useTranslate("contact");
+  const messages = useMessages();
   return (
     <div
       id="#contact"
@@ -17,7 +23,11 @@ export async function Contact() {
       </div>
       <Card className="bg-opacity-background">
         <CardContent className="pt-6">
-          <ContactForm />
+          <NextIntlClientProvider
+            messages={pick(messages, "contact.form", "errors", "toast")}
+          >
+            <ContactForm />
+          </NextIntlClientProvider>
         </CardContent>
       </Card>
     </div>

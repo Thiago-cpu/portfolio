@@ -2,6 +2,10 @@ import { z } from "zod";
 import { CreateLinkSchema } from "./linkValidation";
 import { CreateTechnologySchema } from "./technologyValidation";
 
+export const GetAllWorkSchema = z.object({
+  locale: z.string(),
+});
+
 export const CreateWorkSchema = z.object({
   title: z.string().min(3).max(256),
   range: z.string().min(3).max(256),

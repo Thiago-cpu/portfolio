@@ -1,16 +1,14 @@
+import { type ReactNode } from "react";
 import "@/styles/globals.css";
 import { GeistMono, GeistSans } from "geist/font";
-import { headers } from "next/headers";
 import { type Metadata } from "next/types";
 import { Analytics } from "@vercel/analytics/react";
-import { TRPCReactProvider } from "@/trpc/react";
-import { Toaster } from "@/components/ui/toaster";
 import { Background } from "@/components/background/background";
 
 export const metadata: Metadata = {
   title: "Thiago Valdiviezo",
   description:
-    "Thiago Valdiviezo Full Stack Developer, Frontend developer, Backend developer",
+    "Thiago Valdiviezo Full Stack Developer, Frontend developer, Backend developer, Argentina developer",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
   keywords: [
     "Portfolio",
@@ -25,19 +23,16 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+type Props = {
+  children: ReactNode;
+};
+
+export default function RootLayout({ children }: Props) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="dark relative z-0">
-        <TRPCReactProvider headers={headers()}>
-          <Background squares={25} />
-          {children}
-          <Toaster />
-        </TRPCReactProvider>
+        <Background squares={25} />
+        {children}
         <Analytics />
       </body>
     </html>

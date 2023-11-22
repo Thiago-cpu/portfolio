@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useScopedI18n } from "@/locales/client";
+import { useTranslate } from "@/locales/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrayInput } from "@/components/ui/array-input";
 import { useUpdateWork } from "../../../services/useWorkService";
@@ -28,7 +28,7 @@ const formSchema = UpdateWorkSchema;
 type TFormSchema = z.infer<typeof formSchema>;
 
 export function EditWorkForm({ onSuccess }: UpdateWorkFormProps) {
-  const t = useScopedI18n("experience.update");
+  const t = useTranslate("experience.update");
   const { mutate, isLoading } = useUpdateWork({ onSuccess });
   const workToEdit = useWorkStore((state) => state.workToEdit);
 

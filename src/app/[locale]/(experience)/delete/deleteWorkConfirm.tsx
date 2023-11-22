@@ -12,9 +12,9 @@ import { useWorkStore } from "../store/workStore";
 import { api } from "@/trpc/react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { useScopedI18n } from "@/locales/client";
 import { ToastAction } from "@/components/ui/toast";
 import { useRouter } from "next/navigation";
+import { useTranslate } from "@/locales/utils";
 
 export default function DeleteWorkConfirm() {
   const { cancelDelete, workToDelete } = useWorkStore((state) => ({
@@ -22,8 +22,8 @@ export default function DeleteWorkConfirm() {
     cancelDelete: state.cancelDelete,
   }));
   const { toast } = useToast();
-  const translateToast = useScopedI18n("toast");
-  const t = useScopedI18n("experience.delete");
+  const translateToast = useTranslate("toast");
+  const t = useTranslate("experience.delete");
   const router = useRouter();
   const { mutate, isLoading } = api.work.delete.useMutation({
     onSuccess: () => {

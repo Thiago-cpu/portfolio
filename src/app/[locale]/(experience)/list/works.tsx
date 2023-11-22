@@ -5,10 +5,12 @@ import { api } from "@/trpc/server";
 import { getServerIsAdmin } from "@/server/auth";
 import { type Works } from "../store/workStore";
 import { WorkItem } from "./workItem";
+import { getLocale } from "@/locales/server";
 
 export default async function Works() {
+  const locale = await getLocale();
   const [works, isAdmin] = await Promise.all([
-    api.work.getAll.query(),
+    api.work.getAll.query({ locale }),
     getServerIsAdmin(),
   ]);
 

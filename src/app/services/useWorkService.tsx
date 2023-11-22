@@ -1,4 +1,4 @@
-import { useI18n } from "@/locales/client";
+import { useTranslate } from "@/locales/utils";
 import { api, type inferReactQueryOptions } from "@/trpc/react";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
@@ -9,7 +9,7 @@ export const useCreateWork = (
 ) => {
   const { toast } = useToast();
   const router = useRouter();
-  const t = useI18n();
+  const t = useTranslate();
   const mutation = api.work.create.useMutation({
     ...props,
     onSuccess: (...onSuccessParams) => {
@@ -43,7 +43,7 @@ export const useUpdateWork = (
 ) => {
   const { toast } = useToast();
   const router = useRouter();
-  const t = useI18n();
+  const t = useTranslate();
   const mutation = api.work.update.useMutation({
     onSuccess: (...onSuccessParams) => {
       router.refresh();

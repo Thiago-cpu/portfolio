@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useScopedI18n } from "@/locales/client";
+import { useTranslate } from "@/locales/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { api } from "@/trpc/react";
 import { useToast } from "@/components/ui/use-toast";
@@ -26,8 +26,8 @@ type TFormSchema = z.infer<typeof formSchema>;
 
 export function ContactForm() {
   const { toast } = useToast();
-  const translateToast = useScopedI18n("toast");
-  const t = useScopedI18n("contact.form");
+  const translateToast = useTranslate("toast");
+  const t = useTranslate("contact.form");
   const { mutate, isLoading } = api.contact.create.useMutation({
     onSuccess: () => {
       toast({

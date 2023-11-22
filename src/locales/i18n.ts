@@ -1,0 +1,11 @@
+import { getRequestConfig } from "next-intl/server";
+
+export default getRequestConfig(async ({ locale }) => {
+  const messagesModule = (await import(`./data/${locale}`)) as {
+    default: Record<string, string>;
+  };
+  const messages = messagesModule.default;
+  return {
+    messages,
+  };
+});

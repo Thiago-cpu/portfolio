@@ -1,7 +1,7 @@
-import { getI18n } from "@/locales/server";
+import { useTranslate } from "@/locales/utils";
 
-export default async function Home() {
-  const t = await getI18n();
+export default function Home() {
+  const t = useTranslate();
   return (
     <div
       id="#home"

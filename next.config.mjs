@@ -4,8 +4,12 @@
  */
 await import("./src/env.mjs");
 
+const withNextIntl = await import("next-intl/plugin").then((plugin) =>
+  plugin.default("./src/locales/i18n.ts"),
+);
+
 /** @type {import("next").NextConfig} */
-const config = {
+const config = withNextIntl({
   images: {
     remotePatterns: [
       {
@@ -16,6 +20,6 @@ const config = {
   // experimental: {
   //   ppr: true,
   // },
-};
+});
 
 export default config;

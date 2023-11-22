@@ -2,12 +2,12 @@ import { Accordion } from "@/components/ui/accordion";
 import { PreviewPortal } from "@/components/ui/sheet";
 import { useFormContext } from "react-hook-form";
 import { type TFormSchema } from "../create/createWorkForm";
-import { useCurrentLocale } from "@/locales/client";
 import { type Works } from "../store/workStore";
 import { useEffect, useState } from "react";
 import { WorkItemPreview } from "./workItemPreview";
 import { type RecursivePartial } from "@/lib/types";
 import { getNestedValue } from "@/lib/utils";
+import { useLocale } from "@/locales/utils";
 
 const allowOpenOn = [
   "location",
@@ -23,7 +23,7 @@ const transformFormToWorkItemPreview = ({
   locale,
 }: {
   form?: RecursivePartial<TFormSchema>;
-  locale: "en" | "es";
+  locale: string;
 }): RecursivePartial<Works[number]> => {
   if (!form) return {};
   return {
@@ -38,7 +38,7 @@ const transformFormToWorkItemPreview = ({
 };
 
 export default function WorkPreview() {
-  const locale = useCurrentLocale();
+  const locale = useLocale();
   const { watch, formState } = useFormContext<TFormSchema>();
   const [workToCreate, setWork] = useState<RecursivePartial<Works[number]>>(
     transformFormToWorkItemPreview({ form: formState.defaultValues, locale }),

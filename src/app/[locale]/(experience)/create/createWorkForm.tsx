@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useScopedI18n } from "@/locales/client";
+import { useTranslate } from "@/locales/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { CreateWorkSchema } from "@/validations/workValidation";
 import { ArrayInput } from "@/components/ui/array-input";
@@ -36,7 +36,7 @@ export function CreateWorkForm({ onSuccess }: CreateWorkFormProps) {
       emptyWorkToCreate: state.emptyWorkToCreate,
     }),
   );
-  const t = useScopedI18n("experience.create");
+  const t = useTranslate("experience.create");
   const form = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: workToCreate,

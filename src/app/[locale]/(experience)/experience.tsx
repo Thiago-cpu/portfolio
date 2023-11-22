@@ -1,19 +1,22 @@
-import { getScopedI18n } from "@/locales/server";
 import Works from "./list/works";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getServerIsAdmin } from "@/server/auth";
 import dynamic from "next/dynamic";
+import {
+  NextIntlClientProvider,
+  useMessages,
+  useTranslate,
+} from "@/locales/utils";
+import OnlyAdmin from "@/components/auth/onlyAdmin";
+import pick from "lodash/pick";
 
 const CreateWork = dynamic(() => import("./create/createWork"));
 const DeleteWorkConfirm = dynamic(() => import("./delete/deleteWorkConfirm"));
 const EditWork = dynamic(() => import("./edit/editWork"));
 
-export default async function Experience() {
-  const [t, isAdmin] = await Promise.all([
-    getScopedI18n("experience"),
-    getServerIsAdmin(),
-  ]);
+export default function Experience() {
+  const t = useTranslate("experience");
+  const messages = useMessages();
 
   return (
     <div
@@ -26,13 +29,15 @@ export default async function Experience() {
       <Suspense fallback={<Skeleton className="h-[56px] w-full" />}>
         <Works />
       </Suspense>
-      {isAdmin && (
-        <>
+      <OnlyAdmin>
+        <NextIntlClientProvider
+          messages={pick(messages, "toast", "experience")}
+        >
           <CreateWork />
           <DeleteWorkConfirm />
           <EditWork />
-        </>
-      )}
+        </NextIntlClientProvider>
+      </OnlyAdmin>
     </div>
   );
 }

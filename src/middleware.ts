@@ -1,16 +1,16 @@
-import { createI18nMiddleware } from "next-international/middleware";
 import { type NextRequest, NextResponse } from "next/server";
-
-const I18nMiddleware = createI18nMiddleware({
-  locales: ["en", "es"],
-  defaultLocale: "en",
-  urlMappingStrategy: "rewrite",
-});
+import createMiddleware from "next-intl/middleware";
+import { LOCALES } from "./locales/utils";
 
 const rewrites: Record<string, string> = {
-  "/login": "/api/auth/signin",
-  "/logout": "/api/auth/signout",
+  "/es/login": "/api/auth/signin",
+  "/en/login": "/api/auth/signin",
 };
+
+const I18nMiddleware = createMiddleware({
+  locales: LOCALES,
+  defaultLocale: "en",
+});
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -22,5 +22,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)"],
+  matcher: ["/", "/(es|en)/:path*"],
 };

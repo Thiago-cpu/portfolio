@@ -6,12 +6,12 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { useScopedI18n } from "@/locales/client";
+import { useTranslate } from "@/locales/utils";
 import { EditWorkForm } from "./editWorkForm";
 import { useWorkStore } from "../store/workStore";
 
 export default function EditWork() {
-  const t = useScopedI18n("experience.update");
+  const t = useTranslate("experience.update");
   const { open, handleClose } = useWorkStore((state) => ({
     open: Boolean(state.workToEdit),
     handleClose: state.cancelEdit,

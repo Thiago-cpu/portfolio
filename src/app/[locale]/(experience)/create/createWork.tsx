@@ -8,12 +8,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { useScopedI18n } from "@/locales/client";
+import { useTranslate } from "@/locales/utils";
 import { useState } from "react";
 import { CreateWorkForm } from "./createWorkForm";
 
 export default function CreateWork() {
-  const t = useScopedI18n("experience.create");
+  const t = useTranslate("experience.create");
   const [open, setOpen] = useState(false);
 
   return (
