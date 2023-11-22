@@ -33,7 +33,7 @@ export default function SelectLocale({
       onValueChange={onSelectChange}
       disabled={isPending}
     >
-      <SelectTrigger className="gap-5 px-2 py-2 text-xs sm:w-[145px] sm:gap-0 sm:px-3">
+      <SelectTrigger className="gap-5 bg-opacity-background px-2 py-2 text-xs sm:w-[145px] sm:gap-0 sm:px-3">
         <p className="hidden text-muted-foreground sm:block">{placeholder}:</p>
         <SelectValue />
       </SelectTrigger>
