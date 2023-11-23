@@ -13,7 +13,7 @@ export const contactRouter = createTRPCRouter({
         subject: "New Contact",
         react: ContactTemplate(input),
       });
-      const notified = Boolean(emailSent.error);
+      const notified = Boolean(emailSent.data?.id);
       await ctx.db.insert(contacts).values({
         name: input.name,
         email: input.email,

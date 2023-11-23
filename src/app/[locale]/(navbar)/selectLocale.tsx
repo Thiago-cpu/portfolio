@@ -26,7 +26,7 @@ export default function SelectLocale({
       router.replace(pathname, { locale: nextLocale, scroll: false });
     });
   }
-  // do something with is pending opacity babe
+
   return (
     <Select
       defaultValue={defaultValue}
