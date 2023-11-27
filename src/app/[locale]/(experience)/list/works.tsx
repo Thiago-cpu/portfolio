@@ -23,6 +23,7 @@ function WorkList({ works, isAdmin }: { works: Works; isAdmin: boolean }) {
       type="single"
       collapsible
       className="w-full bg-opacity-background"
+      defaultValue={`work-${Math.floor(Math.random() * works.length)}`}
     >
       {works.map((work, i) => (
         <WorkItem value={`work-${i}`} key={i} work={work} isAdmin={isAdmin} />
