@@ -50,7 +50,9 @@ export function WorkItem({ value, isAdmin, work }: WorkItemProps) {
             <p>{work.text}</p>
             <div className="flex flex-wrap gap-2 font-mono">
               {work.technologies.map(({ technology: tech }, i) => (
-                <Badge key={i}>{tech.name}</Badge>
+                <Badge style={tech.style} key={i}>
+                  {tech.name}
+                </Badge>
               ))}
             </div>
           </div>

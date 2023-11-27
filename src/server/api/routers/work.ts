@@ -45,6 +45,7 @@ export const workRouter = createTRPCRouter({
               technology: {
                 columns: {
                   name: true,
+                  style: true,
                 },
               },
             },
