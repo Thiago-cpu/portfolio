@@ -49,6 +49,7 @@ export const workRouter = createTRPCRouter({
                 },
               },
             },
+            orderBy: (_t, { sql }) => sql`RAND()`,
           },
         },
         orderBy: (t, { asc }) => asc(t.index),
