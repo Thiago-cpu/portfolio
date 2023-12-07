@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { GeistMono, GeistSans } from "geist/font";
 import { type Metadata } from "next/types";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Background } from "@/components/background/background";
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: Props) {
         <Background squares={25} />
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
