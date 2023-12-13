@@ -3,6 +3,7 @@ export default {
     home: "Home",
     contact: "Contact",
     experience: "Experience",
+    project: "Projects",
   },
   home: {
     name: "Thiago Valdiviezo",
@@ -40,6 +41,9 @@ export default {
       description: "There was a problem with your request.",
     },
     tryAgain: "Try again",
+  },
+  project: {
+    title: "Projects",
   },
   experience: {
     title: "Professional Experience",

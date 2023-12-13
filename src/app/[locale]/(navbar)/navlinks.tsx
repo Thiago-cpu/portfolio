@@ -11,6 +11,10 @@ const links = [
     to: "#experience",
   },
   {
+    label: "project",
+    to: "#project",
+  },
+  {
     label: "contact",
     to: "#contact",
   },

@@ -18,6 +18,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        netbook: "url('/img/projects/netbook.png')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
