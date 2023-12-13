@@ -26,7 +26,7 @@ export function Navlinks() {
   return links.map((link, i) => (
     <ScrollLink
       activeClass="text-foreground"
-      className="pointer-events-auto cursor-pointer hover:text-foreground/80"
+      className="pointer-events-auto hidden cursor-pointer hover:text-foreground/80 sm:block"
       to={link.to}
       hashSpy={true}
       spy={true}
