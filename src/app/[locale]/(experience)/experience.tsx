@@ -1,7 +1,6 @@
 import Works from "./list/works";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import dynamic from "next/dynamic";
 import {
   NextIntlClientProvider,
   useMessages,
@@ -9,10 +8,7 @@ import {
 } from "@/locales/utils";
 import OnlyAdmin from "@/components/auth/onlyAdmin";
 import pick from "lodash/pick";
-
-const CreateWork = dynamic(() => import("./create/createWork"));
-const DeleteWorkConfirm = dynamic(() => import("./delete/deleteWorkConfirm"));
-const EditWork = dynamic(() => import("./edit/editWork"));
+import WorkCrud from "./workCrud";
 
 export default function Experience() {
   const t = useTranslate("experience");
@@ -33,9 +29,7 @@ export default function Experience() {
         <NextIntlClientProvider
           messages={pick(messages, "toast", "experience")}
         >
-          <CreateWork />
-          <DeleteWorkConfirm />
-          <EditWork />
+          <WorkCrud />
         </NextIntlClientProvider>
       </OnlyAdmin>
     </div>

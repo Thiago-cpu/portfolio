@@ -1,11 +1,10 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { ContactForm } from "./contactForm";
 import {
   useMessages,
   useTranslate,
   NextIntlClientProvider,
 } from "@/locales/utils";
 import pick from "lodash/pick";
+import ContactCard from "./contactCard";
 
 export function Contact() {
   const t = useTranslate("contact");
@@ -21,15 +20,11 @@ export function Contact() {
         </h2>
         <p className="bg-opacity-background text-center">{t("description")}</p>
       </div>
-      <Card className="bg-opacity-background">
-        <CardContent className="pt-6">
-          <NextIntlClientProvider
-            messages={pick(messages, "contact.form", "errors", "toast")}
-          >
-            <ContactForm />
-          </NextIntlClientProvider>
-        </CardContent>
-      </Card>
+      <NextIntlClientProvider
+        messages={pick(messages, "contact.form", "errors", "toast")}
+      >
+        <ContactCard />
+      </NextIntlClientProvider>
     </div>
   );
 }

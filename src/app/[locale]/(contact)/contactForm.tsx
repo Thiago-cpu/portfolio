@@ -24,7 +24,7 @@ import { zodResolver } from "@/lib/zodResolver";
 const formSchema = CreateContactSchema;
 type TFormSchema = z.infer<typeof formSchema>;
 
-export function ContactForm() {
+export default function ContactForm() {
   const { toast } = useToast();
   const translateToast = useTranslate("toast");
   const t = useTranslate("contact.form");
