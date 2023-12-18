@@ -5,18 +5,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-interface RandomBetweenConfig {
-  withoutFloor?: boolean;
+export function pickRandom<T>(...args: T[]): T {
+  return args[Math.floor(Math.random() * args.length)]!;
 }
 
-export function randomBetween(
-  from: number,
-  to: number,
-  config: RandomBetweenConfig = {},
-) {
-  const { withoutFloor = false } = config;
-  const rdm = Math.random() * (to - from);
-  return withoutFloor ? rdm + from : Math.floor(rdm) + from;
+export function randomBetween(from: number, to: number) {
+  return Math.random() * (to - from) + from;
 }
 
 type NestedObject<T> = Record<string, T>;

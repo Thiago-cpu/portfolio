@@ -32,7 +32,7 @@ export default function RootLayout({ children }: Props) {
   return (
     <html className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="dark relative z-0">
-        <Background squares={25} />
+        <Background squares={20} />
         {children}
         <Analytics />
         <SpeedInsights />
