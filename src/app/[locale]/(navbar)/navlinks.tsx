@@ -28,6 +28,7 @@ export function Navlinks() {
       activeClass="text-foreground"
       className="pointer-events-auto hidden cursor-pointer hover:text-foreground/80 sm:block"
       to={link.to}
+      href={link.to}
       hashSpy={true}
       spy={true}
       smooth={true}
