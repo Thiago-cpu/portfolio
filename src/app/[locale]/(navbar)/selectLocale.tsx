@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/select";
 import { LOCALES } from "@/locales/utils";
 import { usePathname, useRouter } from "@/navigation";
-import { useTransition } from "react";
+import { useId, useTransition } from "react";
 
 export default function SelectLocale({
   placeholder,
@@ -17,6 +17,7 @@ export default function SelectLocale({
   placeholder: string;
   defaultValue: string;
 }) {
+  const id = useId();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
@@ -33,11 +34,15 @@ export default function SelectLocale({
       onValueChange={onSelectChange}
       disabled={isPending}
     >
-      <SelectTrigger className="gap-5 bg-opacity-background px-2 py-2 text-xs sm:w-[145px] sm:gap-0 sm:px-3">
+      <SelectTrigger
+        id={id}
+        aria-label={placeholder}
+        className="gap-5 bg-opacity-background px-2 py-2 text-xs sm:w-[145px] sm:gap-0 sm:px-3"
+      >
         <p className="hidden text-muted-foreground sm:block">{placeholder}:</p>
         <SelectValue />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent aria-labelledby={id}>
         {LOCALES.map((l) => (
           <SelectItem key={l} value={l}>
             {l}
