@@ -15,7 +15,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { api } from "@/trpc/react";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
+import {
+  EnvelopeClosedIcon,
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+} from "@radix-ui/react-icons";
 import Link from "next/link";
 import { CreateContactSchema } from "@/validations/contactValidation";
 import { type z } from "zod";
@@ -119,6 +123,7 @@ export default function ContactForm() {
         />
         <div className="flex items-center justify-between gap-3">
           <Link
+            aria-label="Go to my Github"
             href="https://github.com/Thiago-cpu"
             target="_blank"
             className="pointer-events-auto"
@@ -127,6 +132,7 @@ export default function ContactForm() {
             <GitHubLogoIcon width={34} height={34} />
           </Link>
           <Link
+            aria-label="Go to my Linkedin"
             href="https://www.linkedin.com/in/thiago-valdiviezo/"
             target="_blank"
             className="pointer-events-auto"
@@ -134,13 +140,14 @@ export default function ContactForm() {
           >
             <LinkedInLogoIcon width={34} height={34} />
           </Link>
-          {/* <a
-            href="mailto:thifran789456323@gmail.com"
+          <a
+            aria-label="Send me an email"
+            href="mailto:thiagovaldiviezogc@gmail.com"
             target="_top"
             className="pointer-events-auto"
           >
             <EnvelopeClosedIcon width={34} height={34} />
-          </a> */}
+          </a>
           <Button type="submit" disabled={isLoading} className="ml-auto">
             {t("submit")}
           </Button>
