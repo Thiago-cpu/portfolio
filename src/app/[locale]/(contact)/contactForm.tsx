@@ -145,6 +145,7 @@ export default function ContactForm() {
             href="mailto:thiagovaldiviezogc@gmail.com"
             target="_top"
             className="pointer-events-auto"
+            tabIndex={-1}
           >
             <EnvelopeClosedIcon width={34} height={34} />
           </a>
