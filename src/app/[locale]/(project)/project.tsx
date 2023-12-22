@@ -1,6 +1,5 @@
 import { useTranslate } from "@/locales/utils";
-import { Suspense } from "react";
-import { ProjectCarousel, ProjectCarouselSkeleton } from "./projectCarousel";
+import { ProjectCarousel } from "./projectCarousel";
 import Image from "next/image";
 
 interface Project {
@@ -30,21 +29,19 @@ export function Project() {
       <h2 className="max-w-min bg-opacity-background text-center text-3xl backdrop-blur-[1px]">
         {t("title")}
       </h2>
-      <Suspense fallback={<ProjectCarouselSkeleton />}>
-        <ProjectCarousel>
-          {Projects.map((project) => (
-            <a href={project.href} key={project.href} target="_blank">
-              <Image
-                className="h-full w-full"
-                src={`/img/projects/${project.src}`}
-                alt="tetris"
-                width={1280}
-                height={800}
-              />
-            </a>
-          ))}
-        </ProjectCarousel>
-      </Suspense>
+      <ProjectCarousel>
+        {Projects.map((project) => (
+          <a href={project.href} key={project.href} target="_blank">
+            <Image
+              className="h-full w-full"
+              src={`/img/projects/${project.src}`}
+              alt="tetris"
+              width={1280}
+              height={800}
+            />
+          </a>
+        ))}
+      </ProjectCarousel>
     </div>
   );
 }
