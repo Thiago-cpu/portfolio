@@ -44,6 +44,10 @@ export default {
   },
   project: {
     title: "Proyectos",
+    carousel: {
+      prev: "Anterior",
+      next: "Siguiente",
+    },
   },
   experience: {
     title: "Experiencia Profesional",

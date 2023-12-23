@@ -29,7 +29,10 @@ export function Project() {
       <h2 className="max-w-min bg-opacity-background text-center text-3xl backdrop-blur-[1px]">
         {t("title")}
       </h2>
-      <ProjectCarousel>
+      <ProjectCarousel
+        prevTitle={t("carousel.prev")}
+        nextTitle={t("carousel.next")}
+      >
         {Projects.map((project) => (
           <a href={project.href} key={project.href} target="_blank">
             <Image

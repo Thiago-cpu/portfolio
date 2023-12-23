@@ -9,9 +9,15 @@ import { Children, type ReactNode } from "react";
 
 interface ProjectCarouselProps {
   children?: ReactNode[] | ReactNode;
+  prevTitle: string;
+  nextTitle: string;
 }
 
-export function ProjectCarousel({ children }: ProjectCarouselProps) {
+export function ProjectCarousel({
+  children,
+  prevTitle,
+  nextTitle,
+}: ProjectCarouselProps) {
   const items = Children.toArray(children);
 
   return (
@@ -22,8 +28,14 @@ export function ProjectCarousel({ children }: ProjectCarouselProps) {
             <CarouselItem key={index}>{item}</CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-2 top-[40%] sm:left-8 sm:h-10 sm:w-10" />
-        <CarouselNext className="right-2 top-[40%] sm:right-8 sm:h-10 sm:w-10" />
+        <CarouselPrevious
+          title={prevTitle}
+          className="left-2 top-[40%] sm:left-8 sm:h-10 sm:w-10"
+        />
+        <CarouselNext
+          title={nextTitle}
+          className="right-2 top-[40%] sm:right-8 sm:h-10 sm:w-10"
+        />
       </div>
     </Carousel>
   );
