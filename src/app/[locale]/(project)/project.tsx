@@ -9,12 +9,12 @@ interface Project {
 
 const Projects: Project[] = [
   {
-    src: "tetris.png",
-    href: "https://tetris-thiago-cpu.vercel.app/",
-  },
-  {
     src: "factorize-or-die.png",
     href: "https://factorize-or-die.vercel.app/",
+  },
+  {
+    src: "tetris.png",
+    href: "https://tetris-thiago-cpu.vercel.app/",
   },
   {
     src: "chess-vision.png",
