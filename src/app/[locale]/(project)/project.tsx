@@ -16,6 +16,10 @@ const Projects: Project[] = [
     src: "factorize-or-die.png",
     href: "https://factorize-or-die.vercel.app/",
   },
+  {
+    src: "chess-vision.png",
+    href: "https://thiago-chess-vision.vercel.app",
+  },
 ];
 
 export function Project() {
