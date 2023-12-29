@@ -9,6 +9,10 @@ interface Project {
 
 const Projects: Project[] = [
   {
+    src: "sort-vision.png",
+    href: "https://visualize-sort.vercel.app",
+  },
+  {
     src: "factorize-or-die.png",
     href: "https://factorize-or-die.vercel.app/",
   },
