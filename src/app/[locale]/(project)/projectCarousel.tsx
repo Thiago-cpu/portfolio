@@ -1,3 +1,4 @@
+"use client";
 import {
   Carousel,
   CarouselContent,
@@ -6,6 +7,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Children, type ReactNode } from "react";
+import Autoplay from "embla-carousel-autoplay";
 
 interface ProjectCarouselProps {
   children?: ReactNode[] | ReactNode;
@@ -21,7 +23,17 @@ export function ProjectCarousel({
   const items = Children.toArray(children);
 
   return (
-    <Carousel className="relative flex justify-center" opts={{ loop: true }}>
+    <Carousel
+      plugins={[
+        Autoplay({
+          delay: 3000,
+          stopOnInteraction: false,
+          stopOnMouseEnter: true,
+        }),
+      ]}
+      className="relative flex justify-center"
+      opts={{ loop: true }}
+    >
       <div className="relative flex h-[208px] w-[360px] bg-netbook bg-cover px-[59px] pb-[54px] pt-[9px] sm:h-[370px] sm:w-[640px] sm:px-[105px] sm:pb-[96px] sm:pt-[16px]">
         <CarouselContent className="pointer-events-auto">
           {items.map((item, index) => (
