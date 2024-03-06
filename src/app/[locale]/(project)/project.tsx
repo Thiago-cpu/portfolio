@@ -9,16 +9,24 @@ interface Project {
 
 const Projects: Project[] = [
   {
+    src: "centro-c.png",
+    href: "https://www.ccomplejoartmedia.com.ar",
+  },
+  {
+    src: "el-destape.png",
+    href: "https://feria.eldestapeweb.com/feria",
+  },
+  {
+    src: "tetris.png",
+    href: "https://tetris-thiago-cpu.vercel.app/",
+  },
+  {
     src: "sort-vision.png",
     href: "https://visualize-sort.vercel.app",
   },
   {
     src: "factorize-or-die.png",
     href: "https://factorize-or-die.vercel.app/",
-  },
-  {
-    src: "tetris.png",
-    href: "https://tetris-thiago-cpu.vercel.app/",
   },
   {
     src: "chess-vision.png",
