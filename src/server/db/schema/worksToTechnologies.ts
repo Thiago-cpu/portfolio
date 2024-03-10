@@ -1,10 +1,10 @@
-import { bigint, primaryKey } from "drizzle-orm/mysql-core";
-import { mysqlTable } from "./mysqlTable";
+import { bigint, primaryKey } from "drizzle-orm/pg-core";
+import { pgTable } from "./pgTable";
 import { technologies } from "./technologies";
 import { works } from "./works";
 import { relations } from "drizzle-orm";
 
-export const worksToTechnologies = mysqlTable(
+export const worksToTechnologies = pgTable(
   "works_to_technologies",
   {
     workId: bigint("work_id", { mode: "number" }).notNull(),

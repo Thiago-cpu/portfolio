@@ -1,9 +1,9 @@
-import { index, varchar, timestamp } from "drizzle-orm/mysql-core";
-import { mysqlTable } from "./mysqlTable";
+import { index, varchar, timestamp } from "drizzle-orm/pg-core";
+import { pgTable } from "./pgTable";
 import { relations } from "drizzle-orm";
 import { users } from "./users";
 
-export const sessions = mysqlTable(
+export const sessions = pgTable(
   "session",
   {
     sessionToken: varchar("sessionToken", { length: 255 })

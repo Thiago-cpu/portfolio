@@ -49,12 +49,13 @@ export const workRouter = createTRPCRouter({
                 },
               },
             },
-            orderBy: (_t, { sql }) => sql`RAND()`,
+            orderBy: (_t, { sql }) => sql`random()`,
           },
         },
         orderBy: (t, { asc }) => asc(t.index),
       });
       const textKey = input.locale === "en" ? "text_en" : "text_es";
+      console.log({ pages: allWorks.map((w) => w.page) });
       return allWorks.map((work) => ({
         ...work,
         text: work[textKey],
@@ -65,11 +66,14 @@ export const workRouter = createTRPCRouter({
     .input(CreateWorkSchema)
     .mutation(async ({ ctx, input: { page, ...input } }) => {
       await ctx.db.transaction(async (tx) => {
-        const newLink = await tx.insert(links).values(page);
+        const [newLink] = await tx.insert(links).values(page).returning({
+          insertedId: links.id,
+        });
+        if (!newLink) throw new TRPCError({ code: "CONFLICT" });
         await tx
           .insert(technologies)
           .values(input.technologies)
-          .onDuplicateKeyUpdate({ set: { id: sql`id` } });
+          .onConflictDoNothing();
 
         const newTechs = await tx
           .select({ technologyId: technologies.id })
@@ -87,14 +91,18 @@ export const workRouter = createTRPCRouter({
           })
           .from(works);
 
-        const newWork = await tx.insert(works).values({
-          ...input,
-          index: next[0]?.index ?? 0,
-          pageId: Number(newLink.insertId),
-        });
+        const [newWork] = await tx
+          .insert(works)
+          .values({
+            ...input,
+            index: next[0]?.index ?? 0,
+            pageId: Number(newLink.insertedId),
+          })
+          .returning({ insertedId: works.id });
+        if (!newWork) throw new TRPCError({ code: "CONFLICT" });
 
         const newWorksToTechnologies = newTechs.map(({ technologyId }) => ({
-          workId: Number(newWork.insertId),
+          workId: Number(newWork.insertedId),
           technologyId,
         }));
 
@@ -133,7 +141,7 @@ export const workRouter = createTRPCRouter({
           await tx
             .insert(technologies)
             .values(inputTechnologies)
-            .onDuplicateKeyUpdate({ set: { id: sql`id` } });
+            .onConflictDoNothing();
 
           const map = inputTechnologies.map((t) => t.name);
 

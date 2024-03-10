@@ -1,8 +1,8 @@
-import { primaryKey, varchar, timestamp } from "drizzle-orm/mysql-core";
+import { primaryKey, varchar, timestamp } from "drizzle-orm/pg-core";
 
-import { mysqlTable } from "./mysqlTable";
+import { pgTable } from "./pgTable";
 
-export const verificationTokens = mysqlTable(
+export const verificationTokens = pgTable(
   "verificationToken",
   {
     identifier: varchar("identifier", { length: 255 }).notNull(),
