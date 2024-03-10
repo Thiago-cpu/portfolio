@@ -1,25 +1,22 @@
-import { sql } from "drizzle-orm";
 import {
-  bigint,
+  serial,
   index,
   timestamp,
   varchar,
   boolean,
-} from "drizzle-orm/mysql-core";
-import { mysqlTable } from "./mysqlTable";
+} from "drizzle-orm/pg-core";
+import { pgTable } from "./pgTable";
 
-export const contacts = mysqlTable(
+export const contacts = pgTable(
   "contact",
   {
-    id: bigint("id", { mode: "number" }).primaryKey().autoincrement(),
+    id: serial("id").primaryKey(),
     name: varchar("name", { length: 256 }).notNull(),
     email: varchar("email", { length: 256 }).notNull(),
     message: varchar("message", { length: 500 }),
     notified: boolean("notified").notNull().default(false),
-    createdAt: timestamp("created_at")
-      .default(sql`CURRENT_TIMESTAMP`)
-      .notNull(),
-    updatedAt: timestamp("updatedAt").onUpdateNow(),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt").defaultNow().notNull(),
   },
   (contact) => ({
     nameIndex: index("name_idx").on(contact.name),

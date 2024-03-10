@@ -1,9 +1,9 @@
-import { bigint, varchar, json } from "drizzle-orm/mysql-core";
-import { mysqlTable } from "./mysqlTable";
+import { serial, varchar, json } from "drizzle-orm/pg-core";
+import { pgTable } from "./pgTable";
 import { type CSSProperties } from "react";
 
-export const technologies = mysqlTable("technology", {
-  id: bigint("id", { mode: "number" }).primaryKey().autoincrement(),
+export const technologies = pgTable("technology", {
+  id: serial("id").primaryKey(),
   name: varchar("name", { length: 256 }).notNull().unique(),
   style: json("style")
     .$type<CSSProperties>()
