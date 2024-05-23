@@ -1,11 +1,9 @@
 import type { NextRequest } from "next/server";
 
-export function POST(request: NextRequest) {
-  console.log({ request }, "POST");
+export async function POST(request: NextRequest) {
+  const data = (await request.json()) as unknown;
+  const params = request.nextUrl.searchParams;
+  console.log(params.get("token"));
+  console.log(JSON.stringify(data, null, 2));
   return Response.json({ hi: "hi from post" });
-}
-
-export function GET(request: NextRequest) {
-  console.log({ request }, "GETT");
-  return Response.json({ hi: "hi from get" });
 }
