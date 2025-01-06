@@ -14,7 +14,7 @@ export const CreateWorkSchema = z.object({
   index: z.number().nonnegative(),
   text_en: z.string().max(512),
   text_es: z.string().max(512),
-  logo: z.string().url(),
+  logo: z.string(),
   technologies: z.array(CreateTechnologySchema).min(1),
 });
 
