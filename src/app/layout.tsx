@@ -9,18 +9,20 @@ import { Background } from "@/components/background/background";
 export const metadata: Metadata = {
   title: "Thiago Valdiviezo",
   description:
-    "Thiago Valdiviezo Full Stack Developer, Frontend developer, Backend developer, Argentina developer",
+    "Thiago Valdiviezo Full Stack Developer, Frontend developer, Backend developer, Argentina, Buenos Aires",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
   keywords: [
-    "Portfolio",
-    "Nextjs",
-    "Frontend",
     "Frontend developer",
-    "backend",
-    "backend developer",
-    "fullstack",
-    "fullstack developer",
+    "Backend developer",
+    "Portfolio",
     "thiago valdiviezo",
+    "Nextjs",
+    "Backend",
+    "Frontend",
+    "Typescript",
+    "React",
+    "Fullstack",
+    "Fullstack Developer",
   ],
 };
 
