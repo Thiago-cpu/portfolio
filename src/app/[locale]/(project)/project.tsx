@@ -42,7 +42,7 @@ export function Project() {
       id="#project"
       className="pointer-events-none flex min-h-screen flex-col items-center justify-center gap-12"
     >
-      <h2 className="max-w-min bg-opacity-background text-center text-3xl backdrop-blur-[1px]">
+      <h2 className="max-w-min text-center text-3xl backdrop-blur-[0.5px]">
         {t("title")}
       </h2>
       <ProjectCarousel
@@ -50,7 +50,12 @@ export function Project() {
         nextTitle={t("carousel.next")}
       >
         {Projects.map((project) => (
-          <a href={project.href} key={project.href} target="_blank">
+          <a
+            href={project.href}
+            key={project.href}
+            target="_blank"
+            rel="noreferrer"
+          >
             <Image
               className="h-full w-full"
               src={`/img/projects/${project.src}`}

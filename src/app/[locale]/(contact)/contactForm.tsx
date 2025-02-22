@@ -22,7 +22,7 @@ import {
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { CreateContactSchema } from "@/validations/contactValidation";
-import { type z } from "zod";
+import type { z } from "zod";
 import { zodResolver } from "@/lib/zodResolver";
 
 const formSchema = CreateContactSchema;
@@ -70,7 +70,7 @@ export default function ContactForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col space-y-8"
+        className="flex flex-col space-y-4"
       >
         <FormField
           control={form.control}

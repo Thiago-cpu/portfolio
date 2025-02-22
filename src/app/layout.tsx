@@ -1,7 +1,8 @@
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 import "@/styles/globals.css";
-import { GeistMono, GeistSans } from "geist/font";
-import { type Metadata } from "next/types";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
+import type { Metadata } from "next/types";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Background } from "@/components/background/background";

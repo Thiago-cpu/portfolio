@@ -3,7 +3,7 @@ import { Accordion } from "@/components/ui/accordion";
 import { api } from "@/trpc/server";
 
 import { getServerIsAdmin } from "@/server/auth";
-import { type Works } from "../store/workStore";
+import type { Works as TWorks } from "../store/workStore";
 import { WorkItem } from "./workItem";
 import { getLocale } from "@/locales/server";
 
@@ -17,7 +17,7 @@ export default async function Works() {
   return <WorkList works={works} isAdmin={isAdmin} />;
 }
 
-function WorkList({ works, isAdmin }: { works: Works; isAdmin: boolean }) {
+function WorkList({ works, isAdmin }: { works: TWorks; isAdmin: boolean }) {
   return (
     <Accordion
       type="single"
@@ -26,7 +26,12 @@ function WorkList({ works, isAdmin }: { works: Works; isAdmin: boolean }) {
       defaultValue={`work-${Math.floor(Math.random() * works.length)}`}
     >
       {works.map((work, i) => (
-        <WorkItem value={`work-${i}`} key={i} work={work} isAdmin={isAdmin} />
+        <WorkItem
+          key={work.id}
+          value={`work-${i}`}
+          work={work}
+          isAdmin={isAdmin}
+        />
       ))}
     </Accordion>
   );

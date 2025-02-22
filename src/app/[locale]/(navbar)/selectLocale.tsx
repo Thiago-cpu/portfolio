@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { LOCALES } from "@/locales/utils";
+import { type Locale, LOCALES } from "@/locales/utils";
 import { usePathname, useRouter } from "@/navigation";
 import { useId, useTransition } from "react";
 
@@ -22,7 +22,7 @@ export default function SelectLocale({
   const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
 
-  function onSelectChange(nextLocale: string) {
+  function onSelectChange(nextLocale: Locale) {
     startTransition(() => {
       router.replace(pathname, { locale: nextLocale, scroll: false });
     });

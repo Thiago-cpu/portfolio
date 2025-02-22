@@ -19,7 +19,7 @@ export default function Experience() {
       id="#experience"
       className="pointer-events-none flex min-h-screen flex-col items-center justify-center gap-4"
     >
-      <h2 className="max-w-min bg-opacity-background text-center text-3xl backdrop-blur-[1px]">
+      <h2 className="max-w-min text-center text-3xl backdrop-blur-[0.5px]">
         {t("title")}
       </h2>
       <Suspense fallback={<Skeleton className="h-[56px] w-full" />}>
