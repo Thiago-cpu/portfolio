@@ -34,10 +34,10 @@ interface useStyleProps {
 }
 
 interface Styles extends React.CSSProperties {
-  ["--orbit-radius"]?: string;
-  ["--time"]?: string;
-  ["--from-rotate"]?: string;
-  ["--to-rotate"]?: string;
+  "--orbit-radius"?: string;
+  "--time"?: string;
+  "--from-rotate"?: string;
+  "--to-rotate"?: string;
 }
 
 const directionToMath = {
@@ -58,10 +58,10 @@ const getStyles = (props: useStyleProps) => {
   const styles: Styles = {
     left,
     top,
-    ["--orbit-radius"]: `${radius}`,
-    ["--time"]: `${time}s`,
-    ["--from-rotate"]: `${fromRotate}deg`,
-    ["--to-rotate"]: `${toRotate}deg`,
+    "--orbit-radius": `${radius}`,
+    "--time": `${time}s`,
+    "--from-rotate": `${fromRotate}deg`,
+    "--to-rotate": `${toRotate}deg`,
     pointerEvents: "auto",
   };
 
@@ -83,6 +83,6 @@ export function Square(props: SquareProps) {
       className={cn(squareVariants({ size, className }))}
       {...rest}
       style={mergedStyles}
-    ></AnimatedSquare>
+    />
   );
 }

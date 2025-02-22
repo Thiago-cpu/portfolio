@@ -17,6 +17,7 @@ type SquareListProps = {
 function SquareList({ squares }: BackgroundProps) {
   const arr = new Array(squares).fill(0);
 
+  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
   return arr.map((n, i) => <Square key={i} />);
 }
 
