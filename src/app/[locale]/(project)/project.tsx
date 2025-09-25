@@ -13,10 +13,6 @@ const Projects: Project[] = [
     href: "https://www.ccomplejoartmedia.com.ar",
   },
   {
-    src: "el-destape.png",
-    href: "https://feria.eldestapeweb.com/feria",
-  },
-  {
     src: "tetris.png",
     href: "https://tetris-thiago-cpu.vercel.app/",
   },
