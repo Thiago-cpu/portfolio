@@ -52,7 +52,7 @@ export const workRouter = createTRPCRouter({
             orderBy: (_t, { sql }) => sql`random()`,
           },
         },
-        orderBy: (t, { asc }) => asc(t.index),
+        orderBy: (t, { desc }) => desc(t.index),
       });
       const textKey = input.locale === "en" ? "text_en" : "text_es";
       console.log({ pages: allWorks.map((w) => w.page) });

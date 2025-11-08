@@ -23,7 +23,7 @@ function WorkList({ works, isAdmin }: { works: TWorks; isAdmin: boolean }) {
       type="single"
       collapsible
       className="w-full bg-opacity-background"
-      defaultValue={`work-${Math.floor(Math.random() * works.length)}`}
+      defaultValue={`work-0`}
     >
       {works.map((work, i) => (
         <WorkItem
