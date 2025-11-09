@@ -24,8 +24,6 @@ import Link from "next/link";
 import { CreateContactSchema } from "@/validations/contactValidation";
 import type { z } from "zod";
 import { zodResolver } from "@/lib/zodResolver";
-import Image from "next/image";
-import MonkeytypeLogo from "@/../public/img/logos/monkeytype.svg";
 
 const formSchema = CreateContactSchema;
 type TFormSchema = z.infer<typeof formSchema>;
@@ -74,34 +72,42 @@ export default function ContactForm() {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col space-y-4"
       >
-        <FormField
-          control={form.control}
-          name="name"
-          disabled={isLoading}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("fields.name.label")}</FormLabel>
-              <FormControl>
-                <Input placeholder={t("fields.name.placeholder")} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="email"
-          disabled={isLoading}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("fields.email.label")}</FormLabel>
-              <FormControl>
-                <Input placeholder={t("fields.email.placeholder")} {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex  flex-col gap-4 sm:flex-row">
+          <FormField
+            control={form.control}
+            name="name"
+            disabled={isLoading}
+            render={({ field }) => (
+              <FormItem className="grow">
+                <FormLabel>{t("fields.name.label")}</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder={t("fields.name.placeholder")}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            disabled={isLoading}
+            render={({ field }) => (
+              <FormItem className="grow">
+                <FormLabel>{t("fields.email.label")}</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder={t("fields.email.placeholder")}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <FormField
           disabled={isLoading}
           control={form.control}
@@ -115,7 +121,7 @@ export default function ContactForm() {
                   {...field}
                   value={field.value ?? ""}
                   cols={25}
-                  rows={6}
+                  rows={10}
                   className="max-h-96"
                 />
               </FormControl>

@@ -20,7 +20,7 @@ interface WorkItemProps {
 
 export function WorkItem({ value, isAdmin, work }: WorkItemProps) {
   return (
-    <AccordionItem value={value}>
+    <AccordionItem className="border-0" value={value}>
       <AccordionTrigger
         className="px-[13px]"
         rightTrigger={isAdmin && <WorkToolbar work={work} />}
@@ -30,14 +30,16 @@ export function WorkItem({ value, isAdmin, work }: WorkItemProps) {
           <p>{work.range}</p>
         </div>
       </AccordionTrigger>
-      <AccordionContent className="overflow-hidden text-ellipsis border border-b-0 px-3 shadow-sm">
-        <div className="flex flex-col-reverse gap-5 pt-4 md:flex-row">
+      <AccordionContent className="overflow-hidden text-ellipsis px-4 shadow-sm">
+        <div className="flex flex-col-reverse gap-12 pt-4 md:flex-row">
           <div className="flex grow flex-col gap-4">
-            <div className="flex  items-center gap-2 text-foreground/60">
-              <SewingPinFilledIcon className="shrink-0" width={16} />
-              <p className="shrink-0">{work.location}</p>
+            <div className="flex  items-center gap-3 text-foreground/60">
+              <div className="flex items-center gap-1">
+                <SewingPinFilledIcon className="shrink-0" width={16} />
+                <p className="shrink-0">{work.location}</p>
+              </div>
               <Link
-                className="pointer-events-auto flex items-center gap-2 hover:text-foreground/80"
+                className="pointer-events-auto flex items-center gap-1 text-emerald-300 transition hover:text-emerald-200"
                 href={work.page.href}
                 target="_blank"
               >
@@ -47,7 +49,7 @@ export function WorkItem({ value, isAdmin, work }: WorkItemProps) {
                 </p>
               </Link>
             </div>
-            <p>{work.text}</p>
+            <p className="text-base text-foreground/80">{work.text}</p>
             <div className="flex flex-wrap gap-2 font-mono">
               {work.technologies.map(({ technology: tech }, i) => (
                 <Badge style={tech.style} key={i}>
@@ -63,6 +65,7 @@ export function WorkItem({ value, isAdmin, work }: WorkItemProps) {
               className="pointer-events-auto"
             >
               <Image
+                className="opacity-80"
                 src={work.logo}
                 alt={work.page.label}
                 width={100}

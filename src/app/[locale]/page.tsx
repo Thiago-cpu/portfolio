@@ -12,8 +12,8 @@ export default function Page({
   setRequestLocale(locale);
 
   return (
-    <main className="pointer-events-none flex min-h-screen flex-col items-center justify-center ">
-      <div className="w-full max-w-2xl px-4">
+    <main className="pointer-events-none flex min-h-screen w-full flex-col items-center">
+      <div className="w-full max-w-5xl space-y-12 px-4 sm:px-8">
         <Home />
         <Experience />
         <Project />
