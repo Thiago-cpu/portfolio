@@ -30,6 +30,11 @@ const projects = [
     src: "chess-vision.png",
     href: "https://thiago-chess-vision.vercel.app",
   },
+  {
+    key: "magic",
+    src: "magic.png",
+    href: "https://m4f14-magic.vercel.app/",
+  },
 ] as const;
 
 export function Project() {

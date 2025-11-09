@@ -77,6 +77,11 @@ export default {
         description:
           "Entrenador visual para mejorar la detección de coordenadas en el ajedrez.",
       },
+      magic: {
+        title: "Magic the Gathering History Tracker",
+        description:
+          "Aplicación para rastrear la historia de partidos commander de Magic the Gathering.",
+      },
     },
   },
   experience: {

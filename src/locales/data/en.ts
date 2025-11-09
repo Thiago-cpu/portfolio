@@ -77,6 +77,11 @@ export default {
         description:
           "Visual trainer to improve coordinate recognition in chess.",
       },
+      magic: {
+        title: "Magic: the Gathering History Tracker",
+        description:
+          "Application to track the history of Magic: The Gathering Commander matches.",
+      },
     },
   },
   experience: {
