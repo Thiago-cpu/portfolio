@@ -44,9 +44,39 @@ export default {
   },
   project: {
     title: "Proyectos",
+    cta: {
+      visit: "Ver proyecto",
+    },
     carousel: {
       prev: "Anterior",
       next: "Siguiente",
+    },
+    items: {
+      // artmedia: {
+      //   title: "Centro Cultural Artmedia",
+      //   description:
+      //     "Sitio para un centro cultural de Buenos Aires con agenda curada, venta de tickets y un CMS propio.",
+      // },
+      tetris: {
+        title: "Tetris",
+        description:
+          "Viene con modo 2D, 3D y ASCII. Estuvo bueno para probar three.js",
+      },
+      sortVision: {
+        title: "Sort Vision",
+        description:
+          "Visualizador de algoritmos de ordenamiento para comparar velocidades y operaciones en tiempo real.",
+      },
+      factorize: {
+        title: "Factorize or Die",
+        description:
+          "Mini juego arcade que ejercita factorización mental con dificultad creciente.",
+      },
+      chessVision: {
+        title: "Chess Vision Trainer",
+        description:
+          "Entrenador visual para mejorar la detección de coordenadas en el ajedrez.",
+      },
     },
   },
   experience: {

@@ -44,9 +44,39 @@ export default {
   },
   project: {
     title: "Projects",
+    cta: {
+      visit: "Open project",
+    },
     carousel: {
       prev: "Previous project",
       next: "Next project",
+    },
+    items: {
+      // artmedia: {
+      //   title: "Centro Cultural Artmedia",
+      //   description:
+      //     "Client website for a Buenos Aires cultural center with a curated agenda, ticketing links, and a custom CMS.",
+      // },
+      tetris: {
+        title: "Tetris Revival",
+        description:
+          "Includes 2D, 3D, and ASCII modes. Built to experiment with three.js.",
+      },
+      sortVision: {
+        title: "Sort Vision",
+        description:
+          "Sorting algorithm visualizer to compare speeds and operations in real time.",
+      },
+      factorize: {
+        title: "Factorize or Die",
+        description:
+          "Arcade mini-game that trains mental factorization with increasing difficulty.",
+      },
+      chessVision: {
+        title: "Chess Vision Trainer",
+        description:
+          "Visual trainer to improve coordinate recognition in chess.",
+      },
     },
   },
   experience: {
