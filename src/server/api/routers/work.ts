@@ -55,7 +55,6 @@ export const workRouter = createTRPCRouter({
         orderBy: (t, { desc }) => desc(t.index),
       });
       const textKey = input.locale === "en" ? "text_en" : "text_es";
-      console.log({ pages: allWorks.map((w) => w.page) });
       return allWorks.map((work) => ({
         ...work,
         text: work[textKey],
